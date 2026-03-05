@@ -3,23 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dojo Manager Pro - v4.0</title>
+    <title>Dojo Manager Pro - v5.0</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .month-disabled { background-color: #1e293b !important; color: #475569 !important; cursor: not-allowed !important; opacity: 0.4; }
+        .modal-active { display: flex !important; }
+    </style>
 </head>
 <body class="bg-slate-50 text-slate-800">
+
+    <div id="modal-pagamento" class="fixed inset-0 bg-black/60 z-50 hidden items-center justify-center p-4">
+        <div class="bg-white rounded-3xl p-8 max-w-sm w-full shadow-2xl">
+            <h3 class="text-xl font-black mb-1 uppercase tracking-tighter">Confirmar Pagamento</h3>
+            <p id="modal-aluno-nome" class="text-blue-600 font-bold mb-6 text-sm"></p>
+            
+            <div class="grid grid-cols-2 gap-3">
+                <button onclick="confirmarPagamento('Pix')" class="flex flex-col items-center p-4 border-2 border-slate-100 rounded-2xl hover:border-emerald-500 hover:bg-emerald-50 transition">
+                    <i class="fas fa-qrcode text-emerald-500 mb-2"></i><span class="text-xs font-bold">PIX</span>
+                </button>
+                <button onclick="confirmarPagamento('Espécie')" class="flex flex-col items-center p-4 border-2 border-slate-100 rounded-2xl hover:border-emerald-500 hover:bg-emerald-50 transition">
+                    <i class="fas fa-money-bill-wave text-green-600 mb-2"></i><span class="text-xs font-bold">Espécie</span>
+                </button>
+                <button onclick="confirmarPagamento('Cartão')" class="flex flex-col items-center p-4 border-2 border-slate-100 rounded-2xl hover:border-emerald-500 hover:bg-emerald-50 transition">
+                    <i class="fas fa-credit-card text-blue-500 mb-2"></i><span class="text-xs font-bold">Cartão</span>
+                </button>
+                <button onclick="confirmarPagamento('Boleto')" class="flex flex-col items-center p-4 border-2 border-slate-100 rounded-2xl hover:border-emerald-500 hover:bg-emerald-50 transition">
+                    <i class="fas fa-barcode text-slate-700 mb-2"></i><span class="text-xs font-bold">Boleto</span>
+                </button>
+            </div>
+            <button onclick="fecharModal()" class="w-full mt-6 text-slate-400 font-bold text-xs uppercase tracking-widest">Cancelar</button>
+        </div>
+    </div>
 
     <div class="min-h-screen flex flex-col md:flex-row">
         <aside class="w-full md:w-64 bg-slate-900 text-white p-6 shadow-2xl z-10">
             <div class="flex items-center gap-3 mb-10">
-                <div class="bg-yellow-500 p-2 rounded-lg text-slate-900 shadow-lg shadow-yellow-500/20">
-                    <i class="fas fa-user-ninja text-xl"></i>
-                </div>
+                <div class="bg-yellow-500 p-2 rounded-lg text-slate-900 shadow-lg shadow-yellow-500/20"><i class="fas fa-user-ninja text-xl"></i></div>
                 <h1 class="text-xl font-bold tracking-tight uppercase">Judô Admin</h1>
             </div>
             <nav class="space-y-2">
                 <button onclick="switchTab('dashboard')" class="w-full flex items-center gap-3 p-3 rounded-xl hover:bg-slate-800 transition"><i class="fas fa-chart-line w-5"></i> Dashboard</button>
-                <button onclick="switchTab('cadastro')" class="w-full flex items-center gap-3 p-3 rounded-xl hover:bg-slate-800 transition"><i class="fas fa-user-plus w-5"></i> Nova Matrícula</button>
+                <button onclick="switchTab('cadastro')" class="w-full flex items-center gap-3 p-3 rounded-xl hover:bg-slate-800 transition"><i class="fas fa-user-plus w-5"></i> Matrícula</button>
                 <button onclick="switchTab('financeiro')" class="w-full flex items-center gap-3 p-3 rounded-xl hover:bg-slate-800 transition"><i class="fas fa-wallet w-5"></i> Financeiro</button>
             </nav>
         </aside>
@@ -27,132 +52,85 @@
         <main class="flex-1 p-4 md:p-8 overflow-y-auto">
             
             <section id="tab-dashboard" class="tab-content">
-                <h2 class="text-3xl font-bold mb-6">Visão Geral</h2>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 text-center md:text-left">
+                <h2 class="text-3xl font-bold mb-6 italic uppercase tracking-tighter">Dashboard Financeiro</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
                     <div class="bg-white p-6 rounded-3xl shadow-sm border border-slate-200">
-                        <p class="text-slate-500 text-xs font-bold uppercase tracking-wider">Alunos Ativos</p>
-                        <h3 id="stat-ativos" class="text-5xl font-black text-blue-600">0</h3>
-                    </div>
-                    <div class="bg-white p-6 rounded-3xl shadow-sm border border-slate-200">
-                        <p class="text-slate-500 text-xs font-bold uppercase tracking-wider">Recebido (Mês)</p>
+                        <p class="text-slate-400 text-[10px] font-black uppercase tracking-widest mb-1">Receita Realizada (Mês)</p>
                         <h3 id="stat-receita" class="text-5xl font-black text-emerald-600">R$ 0</h3>
                     </div>
                     <div class="bg-white p-6 rounded-3xl shadow-sm border border-slate-200">
-                        <p class="text-slate-500 text-xs font-bold uppercase tracking-wider">Atrasados (Anual)</p>
+                        <p class="text-slate-400 text-[10px] font-black uppercase tracking-widest mb-1">Inadimplência (Pós-Matrícula)</p>
                         <h3 id="stat-pendente" class="text-5xl font-black text-rose-500">R$ 0</h3>
+                    </div>
+                    <div class="bg-white p-6 rounded-3xl shadow-sm border border-slate-200">
+                        <p class="text-slate-400 text-[10px] font-black uppercase tracking-widest mb-1">Alunos Ativos</p>
+                        <h3 id="stat-ativos" class="text-5xl font-black text-blue-600">0</h3>
                     </div>
                 </div>
             </section>
 
-            <section id="tab-cadastro" class="tab-content hidden animate-in fade-in duration-500">
-                <div class="max-w-4xl mx-auto bg-white rounded-3xl shadow-xl border border-slate-200 overflow-hidden">
-                    <div class="p-6 bg-slate-900 text-white flex justify-between items-center">
-                        <div>
-                            <h2 id="form-title" class="text-xl font-bold italic underline decoration-yellow-500 underline-offset-8">NOVA MATRÍCULA</h2>
-                            <p class="text-slate-400 text-xs mt-2 uppercase tracking-widest">Informações Pessoais e de Saúde</p>
-                        </div>
-                        <button onclick="cancelarEdicao()" id="btn-cancelar" class="hidden text-xs bg-rose-500 px-3 py-1 rounded-full hover:bg-rose-600">CANCELAR EDIÇÃO</button>
+            <section id="tab-cadastro" class="tab-content hidden">
+                <div class="max-w-4xl mx-auto bg-white rounded-3xl shadow-xl overflow-hidden">
+                    <div class="p-6 bg-slate-900 text-white flex justify-between">
+                        <h2 id="form-title" class="text-xl font-bold uppercase italic">Nova Matrícula</h2>
+                        <button onclick="cancelarEdicao()" id="btn-cancelar" class="hidden text-xs bg-rose-500 px-3 py-1 rounded-full">CANCELAR</button>
                     </div>
-                    
-                    <form id="form-aluno" class="p-8 space-y-8">
+                    <form id="form-aluno" class="p-8 grid grid-cols-1 md:grid-cols-3 gap-6">
                         <input type="hidden" id="aluno-id">
-                        
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                            <div class="md:col-span-2">
-                                <label class="block text-xs font-black text-slate-500 mb-2 uppercase">Nome Completo</label>
-                                <input type="text" id="nome" class="w-full p-3 bg-slate-50 border-2 border-slate-100 rounded-xl focus:border-blue-500 outline-none transition" required>
-                            </div>
-                            <div>
-                                <label class="block text-xs font-black text-slate-500 mb-2 uppercase">CPF / RG</label>
-                                <input type="text" id="documento" class="w-full p-3 bg-slate-50 border-2 border-slate-100 rounded-xl outline-none" placeholder="000.000.000-00">
-                            </div>
-                            <div>
-                                <label class="block text-xs font-black text-slate-500 mb-2 uppercase">Nascimento</label>
-                                <input type="date" id="nascimento" class="w-full p-3 bg-slate-50 border-2 border-slate-100 rounded-xl outline-none" required>
-                            </div>
-                            <div>
-                                <label class="block text-xs font-black text-slate-500 mb-2 uppercase">WhatsApp Atleta</label>
-                                <input type="tel" id="whatsapp" class="w-full p-3 bg-slate-50 border-2 border-slate-100 rounded-xl outline-none" placeholder="(00) 00000-0000">
-                            </div>
-                            <div>
-                                <label class="block text-xs font-black text-slate-500 mb-2 uppercase">E-mail</label>
-                                <input type="email" id="email" class="w-full p-3 bg-slate-50 border-2 border-slate-100 rounded-xl outline-none">
-                            </div>
+                        <div class="md:col-span-2">
+                            <label class="text-[10px] font-black text-slate-400 uppercase">Nome Completo</label>
+                            <input type="text" id="nome" class="w-full p-3 bg-slate-50 border-2 border-slate-100 rounded-xl outline-none focus:border-blue-500" required>
                         </div>
-
-                        <hr class="border-slate-100">
-
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                            <div>
-                                <label class="block text-xs font-black text-slate-500 mb-2 uppercase text-rose-600">Tipo Sanguíneo</label>
-                                <select id="sangue" class="w-full p-3 bg-slate-50 border-2 border-slate-100 rounded-xl outline-none">
-                                    <option value="">Não informado</option>
-                                    <option>A+</option><option>A-</option><option>B+</option><option>B-</option>
-                                    <option>AB+</option><option>AB-</option><option>O+</option><option>O-</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label class="block text-xs font-black text-slate-500 mb-2 uppercase">Contato Emergência</label>
-                                <input type="text" id="emergencia_nome" class="w-full p-3 bg-slate-50 border-2 border-slate-100 rounded-xl outline-none" placeholder="Nome do Responsável">
-                            </div>
-                            <div>
-                                <label class="block text-xs font-black text-slate-500 mb-2 uppercase">Fone Emergência</label>
-                                <input type="tel" id="emergencia_fone" class="w-full p-3 bg-slate-50 border-2 border-slate-100 rounded-xl outline-none" placeholder="(00) 00000-0000">
-                            </div>
-                            <div class="md:col-span-3">
-                                <label class="block text-xs font-black text-slate-500 mb-2 uppercase text-rose-600">Alergias ou Restrições Médicas</label>
-                                <textarea id="saude_obs" rows="2" class="w-full p-3 bg-slate-50 border-2 border-slate-100 rounded-xl outline-none" placeholder="Ex: Alérgico a dipirona, problema no joelho esquerdo..."></textarea>
-                            </div>
+                        <div>
+                            <label class="text-[10px] font-black text-slate-400 uppercase font-bold text-blue-600">Data de Matrícula (Início)</label>
+                            <input type="date" id="data_matricula" class="w-full p-3 bg-blue-50 border-2 border-blue-100 rounded-xl outline-none" required>
                         </div>
-
-                        <hr class="border-slate-100">
-
-                        <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
-                            <div>
-                                <label class="block text-xs font-black text-slate-500 mb-2 uppercase">Graduação</label>
-                                <select id="faixa" class="w-full p-3 bg-slate-50 border-2 border-slate-100 rounded-xl outline-none font-bold">
-                                    <option>Branca</option><option>Cinza</option><option>Azul</option>
-                                    <option>Amarela</option><option>Laranja</option><option>Verde</option>
-                                    <option>Roxa</option><option>Marrom</option><option>Preta</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label class="block text-xs font-black text-slate-500 mb-2 uppercase font-bold text-emerald-600">Mensalidade R$</label>
-                                <input type="number" id="valor" class="w-full p-3 bg-slate-50 border-2 border-slate-100 rounded-xl outline-none font-bold" value="100">
-                            </div>
-                            <div>
-                                <label class="block text-xs font-black text-slate-500 mb-2 uppercase font-bold text-emerald-600">Vencimento (Dia)</label>
-                                <input type="number" id="vencimento" min="1" max="31" class="w-full p-3 bg-slate-50 border-2 border-slate-100 rounded-xl outline-none" value="10">
-                            </div>
-                            <div>
-                                <label class="block text-xs font-black text-slate-500 mb-2 uppercase">Status</label>
-                                <select id="status" class="w-full p-3 bg-slate-50 border-2 border-slate-100 rounded-xl outline-none font-bold">
-                                    <option value="Ativo">ATIVO</option>
-                                    <option value="Inativo">INATIVO</option>
-                                </select>
-                            </div>
+                        <div>
+                            <label class="text-[10px] font-black text-slate-400 uppercase">Nascimento</label>
+                            <input type="date" id="nascimento" class="w-full p-3 bg-slate-50 border-2 border-slate-100 rounded-xl outline-none" required>
                         </div>
-
-                        <div class="pt-6">
-                            <button type="submit" class="w-full bg-slate-900 text-white py-5 rounded-2xl font-black text-lg hover:bg-blue-700 shadow-2xl transition duration-300 transform active:scale-95">
-                                <i class="fas fa-save mr-2"></i> SALVAR CADASTRO NO DOJO
-                            </button>
+                        <div>
+                            <label class="text-[10px] font-black text-slate-400 uppercase">WhatsApp</label>
+                            <input type="tel" id="whatsapp" class="w-full p-3 bg-slate-50 border-2 border-slate-100 rounded-xl outline-none">
+                        </div>
+                        <div>
+                            <label class="text-[10px] font-black text-slate-400 uppercase font-bold text-emerald-600 text-sm">Valor R$</label>
+                            <input type="number" id="valor" class="w-full p-3 bg-emerald-50 border-2 border-emerald-100 rounded-xl outline-none font-bold" value="100">
+                        </div>
+                        <div>
+                            <label class="text-[10px] font-black text-slate-400 uppercase">Faixa</label>
+                            <select id="faixa" class="w-full p-3 bg-slate-50 border-2 border-slate-100 rounded-xl outline-none font-bold">
+                                <option>Branca</option><option>Cinza</option><option>Azul</option><option>Amarela</option><option>Laranja</option><option>Verde</option><option>Roxa</option><option>Marrom</option><option>Preta</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="text-[10px] font-black text-slate-400 uppercase font-bold text-emerald-600 text-sm">Vencimento (Dia)</label>
+                            <input type="number" id="vencimento" min="1" max="31" class="w-full p-3 bg-slate-50 border-2 border-slate-100 rounded-xl outline-none" value="10">
+                        </div>
+                        <div>
+                            <label class="text-[10px] font-black text-slate-400 uppercase font-bold text-rose-500 text-sm">Status</label>
+                            <select id="status" class="w-full p-3 bg-slate-50 border-2 border-slate-100 rounded-xl outline-none font-bold">
+                                <option value="Ativo">ATIVO</option><option value="Inativo">INATIVO</option>
+                            </select>
+                        </div>
+                        <div class="md:col-span-3 pt-4">
+                            <button type="submit" class="w-full bg-slate-900 text-white py-5 rounded-2xl font-black text-lg hover:bg-blue-600 transition shadow-2xl">SALVAR MATRÍCULA</button>
                         </div>
                     </form>
                 </div>
             </section>
 
-            <section id="tab-financeiro" class="tab-content hidden animate-in slide-in-from-bottom-5">
-                <div class="bg-white rounded-3xl shadow-xl border border-slate-200 overflow-hidden">
+            <section id="tab-financeiro" class="tab-content hidden">
+                <div class="bg-white rounded-3xl shadow-xl overflow-hidden">
                     <div class="p-6 border-b flex flex-col md:flex-row justify-between gap-4 items-center bg-slate-50">
-                        <h2 class="text-xl font-black text-slate-800 tracking-tighter uppercase italic">Fluxo de Pagamentos</h2>
-                        <input type="text" onkeyup="filtrarTabela(this.value)" placeholder="🔍 Pesquisar por nome ou faixa..." class="p-3 px-6 border-2 border-slate-200 rounded-full bg-white outline-none w-full md:w-80 shadow-inner focus:border-blue-400 transition">
+                        <h2 class="text-xl font-black text-slate-800 uppercase italic">Gestão de Mensalidades</h2>
+                        <input type="text" onkeyup="filtrarTabela(this.value)" placeholder="🔍 Buscar atleta..." class="p-3 px-6 border-2 border-slate-200 rounded-full outline-none w-full md:w-80 shadow-inner focus:border-blue-400 transition">
                     </div>
                     <div class="overflow-x-auto p-6">
                         <table class="w-full text-left border-separate border-spacing-y-3">
                             <thead>
                                 <tr class="text-slate-400">
-                                    <th class="px-4 font-black uppercase text-[10px] tracking-widest">Atleta / Dados</th>
+                                    <th class="px-4 font-black uppercase text-[10px] tracking-widest">Atleta / Início</th>
                                     <th class="px-4 font-black uppercase text-[10px] tracking-widest text-center">Controle Mensal</th>
                                     <th class="px-4 font-black uppercase text-[10px] tracking-widest text-right">Ações</th>
                                 </tr>
@@ -166,9 +144,11 @@
     </div>
 
     <script>
-        let alunos = JSON.parse(localStorage.getItem('dojo_v4_db')) || [];
+        let alunos = JSON.parse(localStorage.getItem('dojo_v5_db')) || [];
         const mesesNome = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"];
         const mesAtualIndex = new Date().getMonth();
+        let alunoSendoPago = null;
+        let mesSendoPago = null;
 
         function switchTab(tab) {
             document.querySelectorAll('.tab-content').forEach(t => t.classList.add('hidden'));
@@ -176,7 +156,7 @@
         }
 
         function salvar() {
-            localStorage.setItem('dojo_v4_db', JSON.stringify(alunos));
+            localStorage.setItem('dojo_v5_db', JSON.stringify(alunos));
             renderDashboard();
             renderFinanceiro();
         }
@@ -188,19 +168,15 @@
             const alunoData = {
                 id: id ? parseInt(id) : Date.now(),
                 nome: document.getElementById('nome').value,
-                documento: document.getElementById('documento').value,
+                data_matricula: document.getElementById('data_matricula').value,
                 nascimento: document.getElementById('nascimento').value,
                 whatsapp: document.getElementById('whatsapp').value,
-                email: document.getElementById('email').value,
-                sangue: document.getElementById('sangue').value,
-                emergencia_nome: document.getElementById('emergencia_nome').value,
-                emergencia_fone: document.getElementById('emergencia_fone').value,
-                saude_obs: document.getElementById('saude_obs').value,
                 faixa: document.getElementById('faixa').value,
                 valor: parseFloat(document.getElementById('valor').value),
-                vencimento: document.getElementById('vencimento').value,
+                vencimento: parseInt(document.getElementById('vencimento').value),
                 status: document.getElementById('status').value,
-                pagamentos: id ? (alunos.find(a => a.id == id).pagamentos || Array(12).fill(false)) : Array(12).fill(false)
+                // Agora salva o objeto do pagamento { pago: bool, metodo: string }
+                pagamentos: id ? (alunos.find(a => a.id == id).pagamentos || Array(12).fill({pago: false, metodo: ''})) : Array(12).fill({pago: false, metodo: ''})
             };
 
             if (id) {
@@ -212,7 +188,7 @@
 
             salvar();
             cancelarEdicao();
-            alert("✅ Dados processados com sucesso!");
+            alert("✅ Dados salvos com sucesso!");
             switchTab('financeiro');
         });
 
@@ -221,39 +197,48 @@
             lista.innerHTML = '';
 
             alunos.forEach(aluno => {
+                const mesMatricula = new Date(aluno.data_matricula + "T00:00:00").getMonth();
                 const tr = document.createElement('tr');
                 tr.className = `group shadow-sm hover:shadow-md transition-all rounded-2xl ${aluno.status === 'Inativo' ? 'opacity-50 grayscale' : 'bg-white'}`;
                 
                 let mesesHtml = '<div class="flex gap-1 justify-center">';
-                const pags = aluno.pagamentos || Array(12).fill(false);
+                const pags = aluno.pagamentos || Array(12).fill({pago: false, metodo: ''});
 
-                pags.forEach((pago, i) => {
-                    let estilo = pago ? "bg-emerald-500 text-white shadow-lg shadow-emerald-200" : 
-                                (i < mesAtualIndex ? "bg-rose-100 text-rose-600 border border-rose-200" : 
-                                (i === mesAtualIndex ? "bg-amber-400 text-white animate-pulse shadow-lg shadow-amber-200" : "bg-slate-50 text-slate-300 border border-slate-100 hover:border-slate-300"));
+                pags.forEach((p, i) => {
+                    let disabled = i < mesMatricula;
+                    let estilo = "";
+                    let icone = mesesNome[i];
+
+                    if (disabled) {
+                        estilo = "month-disabled";
+                    } else if (p.pago) {
+                        estilo = "bg-emerald-500 text-white shadow-lg shadow-emerald-200";
+                        icone = `<i class="fas ${getIcon(p.metodo)} text-[10px]"></i>`;
+                    } else if (i < mesAtualIndex) {
+                        estilo = "bg-rose-100 text-rose-600 border border-rose-200";
+                    } else if (i === mesAtualIndex) {
+                        estilo = "bg-amber-400 text-white animate-pulse shadow-lg shadow-amber-200";
+                    } else {
+                        estilo = "bg-slate-50 text-slate-300 border border-slate-100 hover:border-slate-300";
+                    }
                     
                     mesesHtml += `
-                        <button onclick="toggleMes(${aluno.id}, ${i})" 
+                        <button onclick="${disabled ? '' : `abrirPagamento(${aluno.id}, ${i})`}" 
                             class="w-9 h-9 rounded-xl text-[9px] font-black transition-all active:scale-75 ${estilo}">
-                            ${mesesNome[i]}
+                            ${icone}
                         </button>`;
                 });
                 mesesHtml += '</div>';
 
                 tr.innerHTML = `
                     <td class="p-4 bg-white rounded-l-2xl border-y border-l border-slate-100">
-                        <div class="font-black text-slate-800 text-lg uppercase leading-none">${aluno.nome}</div>
-                        <div class="flex flex-wrap gap-2 text-[10px] font-bold uppercase mt-2">
-                            <span class="bg-slate-100 px-2 py-1 rounded text-slate-500">${aluno.faixa}</span>
-                            <span class="text-emerald-600">R$ ${aluno.valor}</span>
-                            <span class="text-slate-400 italic">Emerg: ${aluno.emergencia_fone}</span>
-                        </div>
+                        <div class="font-black text-slate-800 text-md uppercase leading-none">${aluno.nome}</div>
+                        <div class="text-[9px] font-bold text-blue-500 uppercase mt-1">Início: ${aluno.data_matricula.split('-').reverse().join('/')}</div>
                     </td>
                     <td class="p-4 bg-white border-y border-slate-100">${mesesHtml}</td>
                     <td class="p-4 bg-white rounded-r-2xl border-y border-r border-slate-100 text-right">
                         <div class="flex justify-end gap-1 opacity-100 md:opacity-0 group-hover:opacity-100 transition">
                             <button onclick="editarAluno(${aluno.id})" class="p-3 bg-blue-50 text-blue-600 hover:bg-blue-600 hover:text-white rounded-xl transition"><i class="fas fa-edit"></i></button>
-                            <a href="https://wa.me/55${aluno.whatsapp?.replace(/\D/g,'')}" target="_blank" class="p-3 bg-green-50 text-green-600 hover:bg-green-600 hover:text-white rounded-xl transition"><i class="fab fa-whatsapp"></i></a>
                             <button onclick="deletarAluno(${aluno.id})" class="p-3 bg-rose-50 text-rose-600 hover:bg-rose-600 hover:text-white rounded-xl transition"><i class="fas fa-trash-alt"></i></button>
                         </div>
                     </td>
@@ -262,24 +247,63 @@
             });
         }
 
-        function toggleMes(id, i) {
-            const idx = alunos.findIndex(a => a.id === id);
-            alunos[idx].pagamentos[i] = !alunos[idx].pagamentos[i];
+        function getIcon(metodo) {
+            if(metodo === 'Pix') return 'fa-qrcode';
+            if(metodo === 'Espécie') return 'fa-money-bill-wave';
+            if(metodo === 'Cartão') return 'fa-credit-card';
+            if(metodo === 'Boleto') return 'fa-barcode';
+            return '';
+        }
+
+        function abrirPagamento(alunoId, mesIdx) {
+            const aluno = alunos.find(a => a.id === alunoId);
+            if (aluno.pagamentos[mesIdx].pago) {
+                if(confirm("Deseja cancelar este pagamento?")) {
+                    aluno.pagamentos[mesIdx] = {pago: false, metodo: ''};
+                    salvar();
+                }
+                return;
+            }
+            alunoSendoPago = alunoId;
+            mesSendoPago = mesIdx;
+            document.getElementById('modal-aluno-nome').innerText = aluno.nome + " - " + mesesNome[mesIdx];
+            document.getElementById('modal-pagamento').classList.add('modal-active');
+        }
+
+        function confirmarPagamento(metodo) {
+            const idx = alunos.findIndex(a => a.id === alunoSendoPago);
+            alunos[idx].pagamentos[mesSendoPago] = {pago: true, metodo: metodo};
+            fecharModal();
             salvar();
+        }
+
+        function fecharModal() {
+            document.getElementById('modal-pagamento').classList.remove('modal-active');
+            alunoSendoPago = null; mesSendoPago = null;
+        }
+
+        function renderDashboard() {
+            const ativos = alunos.filter(a => a.status === 'Ativo');
+            const recMes = ativos.reduce((acc, a) => acc + (a.pagamentos?.[mesAtualIndex]?.pago ? a.valor : 0), 0);
+            
+            const pendente = ativos.reduce((acc, a) => {
+                const mesMatricula = new Date(a.data_matricula + "T00:00:00").getMonth();
+                const mesesDevidos = (a.pagamentos || []).slice(mesMatricula, mesAtualIndex).filter(p => !p.pago).length;
+                return acc + (mesesDevidos * a.valor);
+            }, 0);
+
+            document.getElementById('stat-ativos').innerText = ativos.length;
+            document.getElementById('stat-receita').innerText = `R$ ${recMes.toFixed(2)}`;
+            document.getElementById('stat-pendente').innerText = `R$ ${pendente.toFixed(2)}`;
         }
 
         function editarAluno(id) {
             const a = alunos.find(x => x.id == id);
             document.getElementById('aluno-id').value = a.id;
             document.getElementById('nome').value = a.nome;
-            document.getElementById('documento').value = a.documento || "";
+            document.getElementById('data_matricula').value = a.data_matricula;
             document.getElementById('nascimento').value = a.nascimento;
             document.getElementById('whatsapp').value = a.whatsapp || "";
-            document.getElementById('email').value = a.email || "";
-            document.getElementById('sangue').value = a.sangue || "";
-            document.getElementById('emergencia_nome').value = a.emergencia_nome || "";
-            document.getElementById('emergencia_fone').value = a.emergencia_fone || "";
-            document.getElementById('saude_obs').value = a.saude_obs || "";
             document.getElementById('faixa').value = a.faixa;
             document.getElementById('valor').value = a.valor;
             document.getElementById('vencimento').value = a.vencimento;
@@ -291,10 +315,7 @@
         }
 
         function deletarAluno(id) {
-            if(confirm("Deseja realmente excluir todos os dados deste atleta? Esta ação é irreversível.")) {
-                alunos = alunos.filter(a => a.id !== id);
-                salvar();
-            }
+            if(confirm("Excluir definitivamente?")) { alunos = alunos.filter(a => a.id !== id); salvar(); }
         }
 
         function cancelarEdicao() {
@@ -302,19 +323,6 @@
             document.getElementById('aluno-id').value = "";
             document.getElementById('form-title').innerText = "NOVA MATRÍCULA";
             document.getElementById('btn-cancelar').classList.add('hidden');
-        }
-
-        function renderDashboard() {
-            const ativos = alunos.filter(a => a.status === 'Ativo');
-            const recMes = ativos.reduce((acc, a) => acc + (a.pagamentos?.[mesAtualIndex] ? a.valor : 0), 0);
-            const pendente = ativos.reduce((acc, a) => {
-                const nPagos = (a.pagamentos || []).slice(0, mesAtualIndex).filter(p => !p).length;
-                return acc + (nPagos * a.valor);
-            }, 0);
-
-            document.getElementById('stat-ativos').innerText = ativos.length;
-            document.getElementById('stat-receita').innerText = `R$ ${recMes.toFixed(2)}`;
-            document.getElementById('stat-pendente').innerText = `R$ ${pendente.toFixed(2)}`;
         }
 
         function filtrarTabela(v) {
