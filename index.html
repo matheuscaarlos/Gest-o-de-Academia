@@ -1,139 +1,259 @@
-<div class="overflow-x-auto">
-    <table class="w-full text-left border-separate border-spacing-y-2">
-        <thead class="bg-slate-50">
-            <tr>
-                <th class="p-4 font-bold text-slate-500 uppercase text-[10px] w-64">Atleta</th>
-                <th class="p-4 font-bold text-slate-500 uppercase text-[10px] text-center">Status Jan-Dez</th>
-                <th class="p-4 font-bold text-slate-500 uppercase text-[10px] text-right">Ações</th>
-            </tr>
-        </thead>
-        <tbody id="lista-financeiro"></tbody>
-    </table>
-</div>
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dojo Manager Pro - v3.0</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-slate-50 text-slate-800">
 
-<script>
-    let alunos = JSON.parse(localStorage.getItem('dojo_pro_v3')) || [];
-    const mesesNome = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"];
-    const mesAtualIndex = new Date().getMonth();
+    <div class="min-h-screen flex flex-col md:flex-row">
+        <aside class="w-full md:w-64 bg-slate-900 text-white p-6">
+            <div class="flex items-center gap-3 mb-10">
+                <div class="bg-yellow-500 p-2 rounded-lg text-slate-900">
+                    <i class="fas fa-user-ninja text-xl"></i>
+                </div>
+                <h1 class="text-xl font-bold tracking-tight uppercase">Judô Admin</h1>
+            </div>
+            <nav class="space-y-2">
+                <button onclick="switchTab('dashboard')" class="w-full flex items-center gap-3 p-3 rounded-lg hover:bg-slate-800 transition"><i class="fas fa-chart-line w-5"></i> Dashboard</button>
+                <button onclick="switchTab('cadastro')" class="w-full flex items-center gap-3 p-3 rounded-lg hover:bg-slate-800 transition"><i class="fas fa-user-plus w-5"></i> Nova Matrícula</button>
+                <button onclick="switchTab('financeiro')" class="w-full flex items-center gap-3 p-3 rounded-lg hover:bg-slate-800 transition"><i class="fas fa-wallet w-5"></i> Financeiro</button>
+            </nav>
+        </aside>
 
-    function salvar() {
-        localStorage.setItem('dojo_pro_v3', JSON.stringify(alunos));
-        renderDashboard();
-        renderFinanceiro();
-    }
-
-    function renderFinanceiro() {
-        const lista = document.getElementById('lista-financeiro');
-        lista.innerHTML = '';
-
-        alunos.forEach(aluno => {
-            if (!aluno.pagamentos) aluno.pagamentos = Array(12).fill(false); // Inicializa 12 meses
-
-            const tr = document.createElement('tr');
-            tr.className = "bg-white shadow-sm rounded-xl overflow-hidden";
+        <main class="flex-1 p-4 md:p-10 overflow-y-auto">
             
-            // Gerar HTML dos meses
-            let mesesHtml = '<div class="flex gap-1 justify-center">';
-            aluno.pagamentos.forEach((pago, index) => {
-                let statusClass = "";
-                let title = mesesNome[index];
-
-                if (pago) {
-                    statusClass = "bg-emerald-500 text-white"; // Pago
-                } else if (index < mesAtualIndex) {
-                    statusClass = "bg-rose-100 text-rose-600 border border-rose-200"; // Atrasado
-                } else if (index === mesAtualIndex) {
-                    statusClass = "bg-amber-100 text-amber-700 border border-amber-300 animate-pulse"; // Mês Atual
-                } else {
-                    statusClass = "bg-slate-50 text-slate-300 border border-slate-100"; // Futuro
-                }
-
-                mesesHtml += `
-                    <button onclick="toggleMes(${aluno.id}, ${index})" 
-                        title="${title}"
-                        class="w-8 h-8 rounded-md text-[10px] font-bold transition-all hover:scale-110 ${statusClass}">
-                        ${mesesNome[index]}
-                    </button>`;
-            });
-            mesesHtml += '</div>';
-
-            tr.innerHTML = `
-                <td class="p-4 border-l-4 ${aluno.status === 'Ativo' ? 'border-emerald-500' : 'border-slate-300'}">
-                    <div class="font-bold text-slate-700">${aluno.nome}</div>
-                    <div class="flex gap-2 text-[10px] font-medium uppercase text-slate-400">
-                        <span>${aluno.faixa}</span> • <span>Venc. Dia ${aluno.vencimento}</span> • <span>R$ ${aluno.valor}</span>
+            <section id="tab-dashboard" class="tab-content">
+                <h2 class="text-3xl font-bold mb-6">Visão Geral</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+                        <p class="text-slate-500 text-sm font-medium">Alunos Ativos</p>
+                        <h3 id="stat-ativos" class="text-4xl font-bold text-blue-600">0</h3>
                     </div>
-                </td>
-                <td class="p-4">${mesesHtml}</td>
-                <td class="p-4 text-right">
-                    <button onclick="editarAluno(${aluno.id})" class="text-blue-500 p-2 hover:bg-blue-50 rounded-lg"><i class="fas fa-edit"></i></button>
-                    <a href="https://wa.me/55${aluno.whatsapp?.replace(/\D/g,'')}" target="_blank" class="text-green-500 p-2 hover:bg-green-50 rounded-lg"><i class="fab fa-whatsapp"></i></a>
-                </td>
-            `;
-            lista.appendChild(tr);
-        });
-    }
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+                        <p class="text-slate-500 text-sm font-medium">Recebido (Mês Atual)</p>
+                        <h3 id="stat-receita" class="text-4xl font-bold text-emerald-600">R$ 0</h3>
+                    </div>
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+                        <p class="text-slate-500 text-sm font-medium">Inadimplência Total</p>
+                        <h3 id="stat-pendente" class="text-4xl font-bold text-rose-500">R$ 0</h3>
+                    </div>
+                </div>
+            </section>
 
-    function toggleMes(alunoId, mesIndex) {
-        const index = alunos.findIndex(a => a.id === alunoId);
-        if (index !== -1) {
+            <section id="tab-cadastro" class="tab-content hidden">
+                <div class="max-w-3xl bg-white rounded-2xl shadow-md border border-slate-200 overflow-hidden">
+                    <div class="p-6 border-b flex justify-between items-center">
+                        <h2 id="form-title" class="text-xl font-bold">Nova Matrícula</h2>
+                        <button onclick="cancelarEdicao()" id="btn-cancelar" class="hidden text-sm text-rose-500 underline">Cancelar Edição</button>
+                    </div>
+                    <form id="form-aluno" class="p-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <input type="hidden" id="aluno-id">
+                        <div class="md:col-span-2">
+                            <label class="block text-xs font-bold uppercase text-slate-400 mb-1">Nome do Atleta</label>
+                            <input type="text" id="nome" class="w-full p-3 bg-slate-50 border rounded-xl outline-none focus:ring-2 focus:ring-blue-500" required>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-slate-400 mb-1">Data Nascimento</label>
+                            <input type="date" id="nascimento" class="w-full p-3 bg-slate-50 border rounded-xl" required>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-slate-400 mb-1">WhatsApp</label>
+                            <input type="tel" id="whatsapp" class="w-full p-3 bg-slate-50 border rounded-xl" placeholder="(00) 00000-0000">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-slate-400 mb-1">Graduação</label>
+                            <select id="faixa" class="w-full p-3 bg-slate-50 border rounded-xl">
+                                <option>Branca</option><option>Azul</option><option>Amarela</option><option>Laranja</option><option>Verde</option><option>Roxa</option><option>Marrom</option><option>Preta</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-slate-400 mb-1">Mensalidade (R$)</label>
+                            <input type="number" id="valor" class="w-full p-3 bg-slate-50 border rounded-xl" value="100">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-slate-400 mb-1">Dia de Vencimento</label>
+                            <input type="number" id="vencimento" min="1" max="31" class="w-full p-3 bg-slate-50 border rounded-xl" value="10">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-slate-400 mb-1">Status</label>
+                            <select id="status" class="w-full p-3 bg-slate-50 border rounded-xl font-bold text-blue-600">
+                                <option value="Ativo">Ativo</option>
+                                <option value="Inativo">Inativo</option>
+                            </select>
+                        </div>
+                        <div class="md:col-span-2 pt-4">
+                            <button type="submit" class="w-full bg-slate-900 text-white py-4 rounded-xl font-bold hover:bg-slate-800 shadow-lg">SALVAR ATLETA</button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+
+            <section id="tab-financeiro" class="tab-content hidden">
+                <div class="bg-white rounded-2xl shadow-md border border-slate-200 overflow-hidden">
+                    <div class="p-6 border-b flex flex-col md:flex-row justify-between gap-4">
+                        <h2 class="text-xl font-bold text-slate-800">Controle de Mensalidades</h2>
+                        <input type="text" onkeyup="filtrarTabela(this.value)" placeholder="Buscar atleta..." class="p-2 px-4 border rounded-full bg-slate-50 outline-none w-full md:w-64">
+                    </div>
+                    <div class="overflow-x-auto p-4">
+                        <table class="w-full text-left border-separate border-spacing-y-2">
+                            <thead class="bg-slate-50">
+                                <tr>
+                                    <th class="p-4 font-bold text-slate-500 uppercase text-[10px] w-64">Atleta</th>
+                                    <th class="p-4 font-bold text-slate-500 uppercase text-[10px] text-center">Status Jan-Dez</th>
+                                    <th class="p-4 font-bold text-slate-500 uppercase text-[10px] text-right">Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody id="lista-financeiro"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        let alunos = JSON.parse(localStorage.getItem('dojo_pro_v3')) || [];
+        const mesesNome = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"];
+        const mesAtualIndex = new Date().getMonth();
+
+        function switchTab(tab) {
+            document.querySelectorAll('.tab-content').forEach(t => t.classList.add('hidden'));
+            document.getElementById('tab-' + tab).classList.remove('hidden');
+        }
+
+        function salvar() {
+            localStorage.setItem('dojo_pro_v3', JSON.stringify(alunos));
+            renderDashboard();
+            renderFinanceiro();
+        }
+
+        document.getElementById('form-aluno').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const id = document.getElementById('aluno-id').value;
+            
+            const alunoData = {
+                id: id ? parseInt(id) : Date.now(),
+                nome: document.getElementById('nome').value,
+                nascimento: document.getElementById('nascimento').value,
+                whatsapp: document.getElementById('whatsapp').value,
+                faixa: document.getElementById('faixa').value,
+                valor: parseFloat(document.getElementById('valor').value),
+                vencimento: document.getElementById('vencimento').value,
+                status: document.getElementById('status').value,
+                pagamentos: id ? (alunos.find(a => a.id == id).pagamentos || Array(12).fill(false)) : Array(12).fill(false)
+            };
+
+            if (id) {
+                const index = alunos.findIndex(a => a.id == id);
+                alunos[index] = alunoData;
+            } else {
+                alunos.push(alunoData);
+            }
+
+            salvar();
+            cancelarEdicao();
+            alert("Atleta salvo com sucesso!");
+            switchTab('financeiro');
+        });
+
+        function renderFinanceiro() {
+            const lista = document.getElementById('lista-financeiro');
+            lista.innerHTML = '';
+
+            alunos.forEach(aluno => {
+                const tr = document.createElement('tr');
+                tr.className = "bg-slate-50 hover:bg-white transition-all shadow-sm rounded-xl overflow-hidden";
+                
+                let mesesHtml = '<div class="flex gap-1 justify-center">';
+                const pagamentos = aluno.pagamentos || Array(12).fill(false);
+
+                pagamentos.forEach((pago, index) => {
+                    let statusClass = pago ? "bg-emerald-500 text-white shadow-emerald-200" : 
+                                     (index < mesAtualIndex ? "bg-rose-100 text-rose-600" : 
+                                     (index === mesAtualIndex ? "bg-amber-400 text-white animate-pulse" : "bg-white text-slate-300 border border-slate-100"));
+                    
+                    mesesHtml += `
+                        <button onclick="toggleMes(${aluno.id}, ${index})" 
+                            class="w-8 h-8 rounded-md text-[9px] font-bold shadow-sm transition-transform active:scale-95 ${statusClass}">
+                            ${mesesNome[index]}
+                        </button>`;
+                });
+                mesesHtml += '</div>';
+
+                tr.innerHTML = `
+                    <td class="p-4 rounded-l-xl">
+                        <div class="font-bold text-slate-700 leading-tight">${aluno.nome}</div>
+                        <div class="text-[10px] text-slate-400 font-medium uppercase mt-1">
+                            ${aluno.faixa} • R$ ${aluno.valor} • Venc. ${aluno.vencimento}
+                        </div>
+                    </td>
+                    <td class="p-4">${mesesHtml}</td>
+                    <td class="p-4 text-right rounded-r-xl">
+                        <div class="flex justify-end gap-1">
+                            <button onclick="editarAluno(${aluno.id})" class="p-2 text-blue-500 hover:bg-blue-50 rounded-lg"><i class="fas fa-edit"></i></button>
+                            <a href="https://wa.me/55${aluno.whatsapp?.replace(/\D/g,'')}" target="_blank" class="p-2 text-green-500 hover:bg-green-50 rounded-lg"><i class="fab fa-whatsapp"></i></a>
+                        </div>
+                    </td>
+                `;
+                lista.appendChild(tr);
+            });
+        }
+
+        function toggleMes(alunoId, mesIndex) {
+            const index = alunos.findIndex(a => a.id === alunoId);
             if (!alunos[index].pagamentos) alunos[index].pagamentos = Array(12).fill(false);
             alunos[index].pagamentos[mesIndex] = !alunos[index].pagamentos[mesIndex];
             salvar();
         }
-    }
 
-    // Atualize a função de salvar aluno para incluir o array de pagamentos
-    document.getElementById('form-aluno').addEventListener('submit', function(e) {
-        e.preventDefault();
-        const id = document.getElementById('aluno-id').value;
-        const indexExistente = alunos.findIndex(a => a.id == id);
-        
-        const alunoData = {
-            id: id ? parseInt(id) : Date.now(),
-            nome: document.getElementById('nome').value,
-            nascimento: document.getElementById('nascimento').value,
-            whatsapp: document.getElementById('whatsapp').value,
-            faixa: document.getElementById('faixa').value,
-            valor: parseFloat(document.getElementById('valor').value),
-            vencimento: document.getElementById('vencimento').value,
-            status: document.getElementById('status').value,
-            pagamentos: id ? alunos[indexExistente].pagamentos : Array(12).fill(false)
-        };
-
-        if (id) {
-            alunos[indexExistente] = alunoData;
-        } else {
-            alunos.push(alunoData);
+        function editarAluno(id) {
+            const aluno = alunos.find(a => a.id == id);
+            document.getElementById('aluno-id').value = aluno.id;
+            document.getElementById('nome').value = aluno.nome;
+            document.getElementById('nascimento').value = aluno.nascimento;
+            document.getElementById('whatsapp').value = aluno.whatsapp;
+            document.getElementById('faixa').value = aluno.faixa;
+            document.getElementById('valor').value = aluno.valor;
+            document.getElementById('vencimento').value = aluno.vencimento;
+            document.getElementById('status').value = aluno.status;
+            
+            document.getElementById('form-title').innerText = "Editando Atleta";
+            document.getElementById('btn-cancelar').classList.remove('hidden');
+            switchTab('cadastro');
         }
 
-        salvar();
-        cancelarEdicao();
-        switchTab('financeiro');
-    });
+        function cancelarEdicao() {
+            document.getElementById('form-aluno').reset();
+            document.getElementById('aluno-id').value = "";
+            document.getElementById('form-title').innerText = "Nova Matrícula";
+            document.getElementById('btn-cancelar').classList.add('hidden');
+        }
 
-    function renderDashboard() {
-        const ativos = alunos.filter(a => a.status === 'Ativo');
-        const totalReceitaAnual = ativos.reduce((acc, a) => acc + (a.valor * 12), 0);
-        
-        // Cálculo de quanto já foi pago no mês atual
-        const recebidoMes = ativos.reduce((acc, a) => {
-            return acc + (a.pagamentos[mesAtualIndex] ? a.valor : 0);
-        }, 0);
+        function renderDashboard() {
+            const ativos = alunos.filter(a => a.status === 'Ativo');
+            const recebidoMes = ativos.reduce((acc, a) => acc + (a.pagamentos?.[mesAtualIndex] ? a.valor : 0), 0);
+            const inadimplencia = ativos.reduce((acc, a) => {
+                const mesesNaoPagos = (a.pagamentos || []).slice(0, mesAtualIndex).filter(p => !p).length;
+                return acc + (mesesNaoPagos * a.valor);
+            }, 0);
 
-        // Cálculo de inadimplência (meses passados não pagos)
-        const inadimplencia = ativos.reduce((acc, a) => {
-            const mesesPassados = a.pagamentos.slice(0, mesAtualIndex);
-            const naoPagos = mesesPassados.filter(p => !p).length;
-            return acc + (naoPagos * a.valor);
-        }, 0);
+            document.getElementById('stat-ativos').innerText = ativos.length;
+            document.getElementById('stat-receita').innerText = `R$ ${recebidoMes.toFixed(2)}`;
+            document.getElementById('stat-pendente').innerText = `R$ ${inadimplencia.toFixed(2)}`;
+        }
 
-        document.getElementById('stat-ativos').innerText = ativos.length;
-        document.getElementById('stat-receita').innerText = `R$ ${recebidoMes.toFixed(2)}`;
-        document.getElementById('stat-pendente').innerText = `R$ ${inadimplencia.toFixed(2)}`;
-    }
+        function filtrarTabela(val) {
+            const search = val.toLowerCase();
+            const linhas = document.querySelectorAll('#lista-financeiro tr');
+            linhas.forEach(l => l.style.display = l.innerText.toLowerCase().includes(search) ? '' : 'none');
+        }
 
-    // Inicialização
-    renderDashboard();
-    renderFinanceiro();
-</script>
+        renderDashboard();
+        renderFinanceiro();
+    </script>
+</body>
+</html>
