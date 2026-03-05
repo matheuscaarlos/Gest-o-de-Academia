@@ -3,136 +3,186 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestão Judô - Dojo Digital</title>
+    <title>Dojo Manager Pro</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
-<body class="bg-gray-100 font-sans">
+<body class="bg-slate-100 font-sans">
 
-    <nav class="bg-blue-900 text-white p-4 shadow-lg">
-        <div class="container mx-auto flex justify-between items-center">
-            <h1 class="text-2xl font-bold"><i class="fas fa-user-ninja mr-2"></i> Dojo System</h1>
-            <span id="date-display"></span>
+    <nav class="bg-blue-900 text-white shadow-xl">
+        <div class="container mx-auto px-4 flex justify-between items-center py-4">
+            <div class="flex items-center gap-2">
+                <i class="fas fa-user-ninja text-2xl text-yellow-400"></i>
+                <h1 class="text-xl font-bold tracking-wider">DOJO MANAGER</h1>
+            </div>
+            <div class="flex gap-4">
+                <button onclick="switchTab('cadastro')" class="hover:text-yellow-400 transition font-medium"><i class="fas fa-user-plus mr-1"></i> Matrícula</button>
+                <button onclick="switchTab('financeiro')" class="hover:text-yellow-400 transition font-medium"><i class="fas fa-hand-holding-usd mr-1"></i> Financeiro</button>
+            </div>
         </div>
     </nav>
 
-    <div class="container mx-auto p-6">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            
-            <div class="bg-white p-6 rounded-lg shadow-md h-fit">
-                <h2 class="text-xl font-semibold mb-4 text-blue-800 border-b pb-2">Nova Matrícula</h2>
-                <form id="form-aluno" class="space-y-4">
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700">Nome do Atleta</label>
-                        <input type="text" id="nome" class="w-full p-2 border rounded shadow-sm focus:ring-blue-500" required>
+    <div class="container mx-auto p-4 md:p-8">
+        
+        <div id="tab-cadastro" class="tab-content">
+            <div class="max-w-4xl mx-auto bg-white rounded-xl shadow-lg overflow-hidden">
+                <div class="bg-blue-800 p-4">
+                    <h2 class="text-white text-lg font-bold"><i class="fas fa-id-card mr-2"></i> Ficha de Inscrição</h2>
+                </div>
+                <form id="form-aluno" class="p-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="md:col-span-2">
+                        <label class="block text-sm font-semibold text-gray-600">Nome Completo</label>
+                        <input type="text" id="nome" class="w-full p-2 border rounded focus:ring-2 focus:ring-blue-500 outline-none" required>
                     </div>
                     <div>
-                        <label class="block text-sm font-medium text-gray-700">Graduação (Faixa)</label>
-                        <select id="faixa" class="w-full p-2 border rounded shadow-sm">
-                            <option value="Branca">Branca</option>
-                            <option value="Cinza">Cinza</option>
-                            <option value="Azul">Azul</option>
-                            <option value="Amarela">Amarela</option>
-                            <option value="Laranja">Laranja</option>
-                            <option value="Verde">Verde</option>
-                            <option value="Roxa">Roxa</option>
-                            <option value="Marrom">Marrom</option>
-                            <option value="Preta">Preta</option>
+                        <label class="block text-sm font-semibold text-gray-600">Data de Nascimento</label>
+                        <input type="date" id="nascimento" class="w-full p-2 border rounded" required>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-600">WhatsApp</label>
+                        <input type="tel" id="whatsapp" placeholder="(00) 00000-0000" class="w-full p-2 border rounded">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-600">E-mail</label>
+                        <input type="email" id="email" class="w-full p-2 border rounded">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-600">Graduação (Faixa)</label>
+                        <select id="faixa" class="w-full p-2 border rounded">
+                            <option>Branca</option><option>Cinza</option><option>Azul</option>
+                            <option>Amarela</option><option>Laranja</option><option>Verde</option>
+                            <option>Roxa</option><option>Marrom</option><option>Preta</option>
                         </select>
                     </div>
                     <div>
-                        <label class="block text-sm font-medium text-gray-700">Valor Mensalidade (R$)</label>
-                        <input type="number" id="valor" class="w-full p-2 border rounded shadow-sm" value="100">
+                        <label class="block text-sm font-semibold text-gray-600">Valor Mensalidade (R$)</label>
+                        <input type="number" id="valor" value="120" class="w-full p-2 border rounded">
                     </div>
-                    <button type="submit" class="w-full bg-blue-700 text-white py-2 rounded hover:bg-blue-800 transition">Matricular Aluno</button>
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-600">Melhor Dia de Pagamento</label>
+                        <select id="vencimento" class="w-full p-2 border rounded">
+                            <option value="05">Dia 05</option>
+                            <option value="10">Dia 10</option>
+                            <option value="15">Dia 15</option>
+                            <option value="20">Dia 20</option>
+                        </select>
+                    </div>
+                    <div class="md:col-span-2 mt-4">
+                        <button type="submit" class="w-full bg-green-600 text-white py-3 rounded-lg font-bold hover:bg-green-700 shadow-md transition">
+                            FINALIZAR MATRÍCULA
+                        </button>
+                    </div>
                 </form>
             </div>
+        </div>
 
-            <div class="md:col-span-2 bg-white p-6 rounded-lg shadow-md">
-                <h2 class="text-xl font-semibold mb-4 text-blue-800 border-b pb-2">Gestão de Alunos</h2>
+        <div id="tab-financeiro" class="tab-content hidden">
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+                <div class="bg-emerald-700 p-4 flex justify-between items-center text-white">
+                    <h2 class="text-lg font-bold"><i class="fas fa-coins mr-2"></i> Controle de Mensalidades</h2>
+                    <input type="text" id="busca" placeholder="Buscar aluno..." class="p-1 px-3 rounded text-gray-800 text-sm outline-none">
+                </div>
                 <div class="overflow-x-auto">
                     <table class="w-full text-left border-collapse">
                         <thead>
-                            <tr class="bg-gray-50">
-                                <th class="p-3 border-b text-sm font-semibold text-gray-600">Atleta</th>
-                                <th class="p-3 border-b text-sm font-semibold text-gray-600">Faixa</th>
-                                <th class="p-3 border-b text-sm font-semibold text-gray-600">Mensalidade</th>
-                                <th class="p-3 border-b text-sm font-semibold text-gray-600">Status</th>
-                                <th class="p-3 border-b text-sm font-semibold text-gray-600">Ações</th>
+                            <tr class="bg-gray-100 border-b">
+                                <th class="p-4 text-sm font-bold text-gray-600">Atleta</th>
+                                <th class="p-4 text-sm font-bold text-gray-600">Contato</th>
+                                <th class="p-4 text-sm font-bold text-gray-600 text-center">Vencimento</th>
+                                <th class="p-4 text-sm font-bold text-gray-600">Valor</th>
+                                <th class="p-4 text-sm font-bold text-gray-600 text-center">Status</th>
+                                <th class="p-4 text-sm font-bold text-gray-600">Ações</th>
                             </tr>
                         </thead>
-                        <tbody id="lista-alunos">
+                        <tbody id="lista-financeiro" class="divide-y divide-gray-100">
                             </tbody>
                     </table>
                 </div>
             </div>
-
         </div>
+
     </div>
 
     <script>
-        let alunos = JSON.parse(localStorage.getItem('alunos_judo')) || [];
+        // --- CONFIGURAÇÃO ---
+        // Se já tiver o link do Apps Script, coloque aqui. Se não, ele usa o LocalStorage.
+        let API_URL = ""; 
+        let alunos = JSON.parse(localStorage.getItem('db_dojo')) || [];
 
-        const form = document.getElementById('form-aluno');
-        const lista = document.getElementById('lista-alunos');
-
-        function salvarDados() {
-            localStorage.setItem('alunos_judo', JSON.stringify(alunos));
-            renderizar();
+        // Alternar entre abas
+        function switchTab(tabName) {
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.add('hidden'));
+            document.getElementById('tab-' + tabName).classList.remove('hidden');
         }
 
-        form.addEventListener('submit', (e) => {
+        // Salvar Aluno
+        document.getElementById('form-aluno').addEventListener('submit', function(e) {
             e.preventDefault();
-            const novoAluno = {
+            const novo = {
                 id: Date.now(),
                 nome: document.getElementById('nome').value,
+                nascimento: document.getElementById('nascimento').value,
+                whatsapp: document.getElementById('whatsapp').value,
+                email: document.getElementById('email').value,
                 faixa: document.getElementById('faixa').value,
                 valor: document.getElementById('valor').value,
+                vencimento: document.getElementById('vencimento').value,
                 pago: false
             };
-            alunos.push(novoAluno);
-            form.reset();
-            salvarDados();
+
+            alunos.push(novo);
+            localStorage.setItem('db_dojo', JSON.stringify(alunos));
+            alert("Matrícula realizada com sucesso!");
+            this.reset();
+            renderFinanceiro();
         });
 
-        function alternarPagamento(id) {
-            alunos = alunos.map(aluno => 
-                aluno.id === id ? {...aluno, pago: !aluno.pago} : aluno
-            );
-            salvarDados();
-        }
-
-        function excluirAluno(id) {
-            if(confirm("Deseja remover este atleta?")) {
-                alunos = alunos.filter(aluno => aluno.id !== id);
-                salvarDados();
-            }
-        }
-
-        function renderizar() {
+        function renderFinanceiro() {
+            const lista = document.getElementById('lista-financeiro');
             lista.innerHTML = '';
+            
             alunos.forEach(aluno => {
                 const tr = document.createElement('tr');
-                tr.className = "hover:bg-gray-50 transition";
                 tr.innerHTML = `
-                    <td class="p-3 border-b font-medium">${aluno.nome}</td>
-                    <td class="p-3 border-b"><span class="px-2 py-1 rounded text-xs font-bold bg-gray-200">${aluno.faixa}</span></td>
-                    <td class="p-3 border-b text-gray-600">R$ ${aluno.valor}</td>
-                    <td class="p-3 border-b">
-                        <button onclick="alternarPagamento(${aluno.id})" class="px-3 py-1 rounded-full text-xs font-bold ${aluno.pago ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}">
-                            ${aluno.pago ? '<i class="fas fa-check"></i> Pago' : '<i class="fas fa-clock"></i> Pendente'}
-                        </button>
+                    <td class="p-4">
+                        <div class="font-bold text-gray-800">${aluno.nome}</div>
+                        <div class="text-xs text-gray-500 italic">${aluno.faixa}</div>
                     </td>
-                    <td class="p-3 border-b">
-                        <button onclick="excluirAluno(${aluno.id})" class="text-red-500 hover:text-red-700"><i class="fas fa-trash"></i></button>
+                    <td class="p-4 text-sm">
+                        <a href="https://wa.me/55${aluno.whatsapp.replace(/\D/g,'')}" target="_blank" class="text-green-600 hover:underline"><i class="fab fa-whatsapp"></i> Zap</a>
+                    </td>
+                    <td class="p-4 text-center font-mono">Todo dia ${aluno.vencimento}</td>
+                    <td class="p-4 font-semibold text-gray-700">R$ ${aluno.valor}</td>
+                    <td class="p-4 text-center">
+                        <span class="px-3 py-1 rounded-full text-xs font-bold ${aluno.pago ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}">
+                            ${aluno.pago ? 'PAGO' : 'PENDENTE'}
+                        </span>
+                    </td>
+                    <td class="p-4 flex gap-2">
+                        <button onclick="togglePago(${aluno.id})" class="bg-blue-50 text-blue-600 p-2 rounded hover:bg-blue-100"><i class="fas fa-dollar-sign"></i></button>
+                        <button onclick="excluir(${aluno.id})" class="bg-red-50 text-red-600 p-2 rounded hover:bg-red-100"><i class="fas fa-trash"></i></button>
                     </td>
                 `;
                 lista.appendChild(tr);
             });
         }
 
-        document.getElementById('date-display').innerText = new Date().toLocaleDateString('pt-br');
-        renderizar();
+        function togglePago(id) {
+            alunos = alunos.map(a => a.id === id ? {...a, pago: !a.pago} : a);
+            localStorage.setItem('db_dojo', JSON.stringify(alunos));
+            renderFinanceiro();
+        }
+
+        function excluir(id) {
+            if(confirm("Excluir este aluno permanentemente?")) {
+                alunos = alunos.filter(a => a.id !== id);
+                localStorage.setItem('db_dojo', JSON.stringify(alunos));
+                renderFinanceiro();
+            }
+        }
+
+        // Início
+        renderFinanceiro();
     </script>
 </body>
 </html>
