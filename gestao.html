@@ -62,11 +62,11 @@
               "surface-container-low": "#f3f4f5"
             },
             fontFamily: {
-              "headline": ["Noto Serif"],
-              "body": ["Work Sans"],
-              "label": ["Work Sans"]
+              "headline": ["Noto Serif", "serif"],
+              "body": ["Work Sans", "sans-serif"],
+              "label": ["Work Sans", "sans-serif"]
             },
-            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "9999px"},
           },
         },
       }
@@ -85,273 +85,272 @@
 </head>
 <body class="bg-surface text-on-surface">
 <!-- SideNavBar -->
-<nav class="fixed left-0 top-0 h-full w-56 z-[60] bg-slate-100 dark:bg-slate-900 flex flex-col py-8 gap-y-4 border-r border-slate-200/20 dark:border-slate-800/20 font-work-sans text-[13px] tracking-tight text-blue-950 dark:text-blue-400">
-<div class="px-6 mb-4">
-<h1 class="font-noto-serif text-lg font-black text-blue-950 dark:text-blue-50">Kodokan Management</h1>
-<p class="text-[9px] uppercase tracking-[0.2em] opacity-60">The Modern Dojo</p>
+<nav class="fixed left-0 top-0 h-full w-52 z-[60] bg-slate-100 dark:bg-slate-900 flex flex-col py-6 gap-y-3 border-r border-slate-200/20 dark:border-slate-800/20 font-work-sans text-[12px] tracking-tight text-blue-950 dark:text-blue-400">
+<div class="px-5 mb-3">
+<h1 class="font-noto-serif text-base font-black text-blue-950 dark:text-blue-50">Kodokan Management</h1>
+<p class="text-[8px] uppercase tracking-[0.2em] opacity-60">The Modern Dojo</p>
 </div>
 <div class="flex flex-col flex-grow">
 <!-- Dashboard Tab (Inactive) -->
-<a class="flex items-center gap-x-3 px-6 py-2.5 text-slate-500 dark:text-slate-400 hover:bg-slate-200/40 dark:hover:bg-slate-800/40 transition-all duration-200 active:translate-x-1 cursor-pointer" href="index.html">
-<span class="material-symbols-outlined text-lg" data-icon="dashboard">dashboard</span>
+<a class="flex items-center gap-x-2.5 px-5 py-2 text-slate-500 dark:text-slate-400 hover:bg-slate-200/40 dark:hover:bg-slate-800/40 transition-all duration-200 active:translate-x-0.5 cursor-pointer" href="index.html">
+<span class="material-symbols-outlined text-[18px]" data-icon="dashboard">dashboard</span>
 <span>Dashboard</span>
 </a>
 <!-- Students Tab (Active) -->
-<a class="flex items-center gap-x-3 px-6 py-2.5 text-blue-950 dark:text-blue-50 font-semibold border-r-4 border-red-700 dark:border-red-600 bg-white dark:bg-slate-800 transition-all duration-200 active:translate-x-1 cursor-pointer" href="alunos.html">
-<span class="material-symbols-outlined text-lg" data-icon="groups">groups</span>
+<a class="flex items-center gap-x-2.5 px-5 py-2 text-blue-950 dark:text-blue-50 font-semibold border-r-4 border-red-700 dark:border-red-600 bg-white dark:bg-slate-800 transition-all duration-200 active:translate-x-0.5 cursor-pointer" href="alunos.html">
+<span class="material-symbols-outlined text-[18px]" data-icon="groups">groups</span>
 <span>Students</span>
 </a>
 <!-- Schedule Tab (Inactive) -->
-<a class="flex items-center gap-x-3 px-6 py-2.5 text-slate-500 dark:text-slate-400 hover:bg-slate-200/40 dark:hover:bg-slate-800/40 transition-all duration-200 active:translate-x-1 cursor-pointer" href="calendario.html">
-<span class="material-symbols-outlined text-lg" data-icon="calendar_today">calendar_today</span>
+<a class="flex items-center gap-x-2.5 px-5 py-2 text-slate-500 dark:text-slate-400 hover:bg-slate-200/40 dark:hover:bg-slate-800/40 transition-all duration-200 active:translate-x-0.5 cursor-pointer" href="calendario.html">
+<span class="material-symbols-outlined text-[18px]" data-icon="calendar_today">calendar_today</span>
 <span>Schedule</span>
 </a>
 <!-- Finance Tab (Inactive) -->
-<a class="flex items-center gap-x-3 px-6 py-2.5 text-slate-500 dark:text-slate-400 hover:bg-slate-200/40 dark:hover:bg-slate-800/40 transition-all duration-200 active:translate-x-1 cursor-pointer" href="financeiro.html">
-<span class="material-symbols-outlined text-lg" data-icon="payments">payments</span>
+<a class="flex items-center gap-x-2.5 px-5 py-2 text-slate-500 dark:text-slate-400 hover:bg-slate-200/40 dark:hover:bg-slate-800/40 transition-all duration-200 active:translate-x-0.5 cursor-pointer" href="financeiro.html">
+<span class="material-symbols-outlined text-[18px]" data-icon="payments">payments</span>
 <span>Finance</span>
 </a>
 </div>
-<div class="mt-auto border-t border-slate-200/10 pt-4 flex flex-col">
-<a class="flex items-center gap-x-3 px-6 py-2.5 text-slate-500 hover:text-blue-950 transition-all cursor-pointer" href="#">
-<span class="material-symbols-outlined text-lg" data-icon="settings">settings</span>
+<div class="mt-auto border-t border-slate-200/10 pt-3 flex flex-col">
+<a class="flex items-center gap-x-2.5 px-5 py-2 text-slate-500 hover:text-blue-950 transition-all cursor-pointer" href="#">
+<span class="material-symbols-outlined text-[18px]" data-icon="settings">settings</span>
 <span>Settings</span>
 </a>
-<a class="flex items-center gap-x-3 px-6 py-2.5 text-slate-500 hover:text-blue-950 transition-all cursor-pointer" href="#">
-<span class="material-symbols-outlined text-lg" data-icon="logout">logout</span>
+<a class="flex items-center gap-x-2.5 px-5 py-2 text-slate-500 hover:text-blue-950 transition-all cursor-pointer" href="#">
+<span class="material-symbols-outlined text-[18px]" data-icon="logout">logout</span>
 <span>Logout</span>
 </a>
 </div>
 </nav>
 <!-- TopAppBar -->
-<header class="fixed top-0 w-full z-50 bg-slate-50/80 dark:bg-slate-950/80 backdrop-blur-md flex justify-between items-center px-12 h-16 ml-56">
-<div class="flex items-center bg-slate-200/50 dark:bg-slate-800/50 px-3 py-1.5 rounded-lg w-80">
+<header class="fixed top-0 w-full z-50 bg-slate-50/80 dark:bg-slate-950/80 backdrop-blur-md flex justify-between items-center px-8 h-14 ml-52 pr-52">
+<div class="flex items-center bg-slate-200/50 dark:bg-slate-800/50 px-3 py-1.5 rounded-lg w-72">
 <span class="material-symbols-outlined text-blue-900/40 mr-2 text-lg" data-icon="search">search</span>
-<input class="bg-transparent border-none focus:ring-0 text-[13px] font-work-sans w-full text-blue-900 dark:text-blue-50" placeholder="Search students..." type="text"/>
+<input class="bg-transparent border-none focus:ring-0 text-[12px] font-work-sans w-full text-blue-900 dark:text-blue-50" placeholder="Search students..." type="text"/>
 </div>
-<div class="flex items-center gap-x-6 pr-56">
-<div class="flex items-center gap-x-3">
-<button class="p-1.5 rounded-full hover:bg-slate-200/50 dark:hover:bg-slate-800/50 transition-colors scale-95 duration-150 cursor-pointer">
-<span class="material-symbols-outlined text-blue-900 dark:text-blue-400 text-xl" data-icon="notifications">notifications</span>
+<div class="flex items-center gap-x-4">
+<div class="flex items-center gap-x-1.5">
+<button class="p-1.5 rounded-full hover:bg-slate-200/50 dark:hover:bg-slate-800/50 transition-colors duration-150 cursor-pointer active:scale-90">
+<span class="material-symbols-outlined text-blue-900 dark:text-blue-400 text-lg" data-icon="notifications">notifications</span>
 </button>
-<button class="p-1.5 rounded-full hover:bg-slate-200/50 dark:hover:bg-slate-800/50 transition-colors scale-95 duration-150 cursor-pointer">
-<span class="material-symbols-outlined text-blue-900 dark:text-blue-400 text-xl" data-icon="payments">payments</span>
+<button class="p-1.5 rounded-full hover:bg-slate-200/50 dark:hover:bg-slate-800/50 transition-colors duration-150 cursor-pointer active:scale-90">
+<span class="material-symbols-outlined text-blue-900 dark:text-blue-400 text-lg" data-icon="payments">payments</span>
 </button>
 </div>
-<button class="bg-secondary text-on-secondary px-4 py-1.5 rounded-lg text-xs font-semibold tracking-wide hover:brightness-110 active:scale-95 transition-all cursor-pointer">
-            Add Student
-        </button>
-<div class="flex items-center gap-x-3">
+<button class="bg-secondary text-on-secondary px-4 py-1.5 rounded-lg text-[11px] font-semibold tracking-wide hover:opacity-90 active:scale-95 transition-all cursor-pointer shadow-sm">
+                Add Student
+            </button>
+<div class="flex items-center gap-x-2.5 ml-2">
 <div class="text-right">
-<p class="text-[11px] font-bold text-blue-900 dark:text-blue-50 leading-none">Sensei Tanaka</p>
-<p class="text-[9px] text-blue-900/60 dark:text-blue-400">Head Instructor</p>
+<p class="text-[10px] font-bold text-blue-900 dark:text-blue-50 leading-none">Sensei Tanaka</p>
+<p class="text-[8px] text-blue-900/60 dark:text-blue-400 mt-0.5">Head Instructor</p>
 </div>
-<img class="w-8 h-8 rounded-full object-cover ring-2 ring-primary/10" data-alt="Sensei Profile portrait" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAcx7_QxS-43shQGHZho4AD6EujJn_egveb68ImFF6wLbkOe79RQGSTcNXLgXB4DMx5E_FWz7dpAWDe7ZjcrX5ZOGIb8C8lrMR-p6hCm0BXwK6k70urwuMWkvT77iv6PZmHEn1BX8c1J7sA7_kESK4cWwpxfzTMJH9Q3gZgfoefF08_YJODYYo5tFB7OpN4Ez-24Wmfa2UDurUEkfRhIUSMORaml4ESqrHvT6rPZEd49NdctpYXEEuWyZOjMsci6Va3JMU7LIse1DQ"/>
+<img alt="Sensei Profile" class="w-7 h-7 rounded-full object-cover ring-2 ring-primary/10" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAcx7_QxS-43shQGHZho4AD6EujJn_egveb68ImFF6wLbkOe79RQGSTcNXLgXB4DMx5E_FWz7dpAWDe7ZjcrX5ZOGIb8C8lrMR-p6hCm0BXwK6k70urwuMWkvT77iv6PZmHEn1BX8c1J7sA7_kESK4cWwpxfzTMJH9Q3gZgfoefF08_YJODYYo5tFB7OpN4Ez-24Wmfa2UDurUEkfRhIUSMORaml4ESqrHvT6rPZEd49NdctpYXEEuWyZOjMsci6Va3JMU7LIse1DQ"/>
 </div>
 </div>
 </header>
 <!-- Main Content Canvas -->
-<main class="pl-56 pt-16 min-h-screen bg-surface">
-<div class="p-8 max-w-7xl mx-auto">
+<main class="pl-52 pt-14 min-h-screen bg-surface">
+<div class="p-8 max-w-6xl mx-auto">
 <!-- Hero Stats / Header -->
-<div class="flex justify-between items-end mb-8">
+<div class="flex justify-between items-end mb-6">
 <div>
-<h2 class="font-noto-serif text-3xl font-black text-primary mb-1">Student Registry</h2>
-<p class="text-on-surface-variant font-work-sans text-xs">Manage and monitor the progress of your academy members.</p>
+<h2 class="font-noto-serif text-2xl font-black text-primary mb-1">Student Registry</h2>
+<p class="text-on-surface-variant font-work-sans text-[11px]">Manage and monitor the progress of your academy members.</p>
 </div>
-<div class="flex gap-x-8">
+<div class="flex gap-x-6">
 <div class="text-right">
-<span class="block font-noto-serif text-2xl font-bold text-primary leading-tight">124</span>
-<span class="text-[9px] uppercase tracking-widest font-bold text-on-surface-variant opacity-70">Active Students</span>
+<span class="block font-noto-serif text-xl font-bold text-primary leading-tight">124</span>
+<span class="text-[8px] uppercase tracking-widest font-bold text-on-surface-variant opacity-70">Active Students</span>
 </div>
 <div class="text-right">
-<span class="block font-noto-serif text-2xl font-bold text-secondary leading-tight">8</span>
-<span class="text-[9px] uppercase tracking-widest font-bold text-on-surface-variant opacity-70">Black Belts</span>
+<span class="block font-noto-serif text-xl font-bold text-secondary leading-tight">8</span>
+<span class="text-[8px] uppercase tracking-widest font-bold text-on-surface-variant opacity-70">Black Belts</span>
 </div>
 </div>
 </div>
 <!-- Table Section -->
-<div class="bg-surface-container-low rounded-lg overflow-hidden border border-slate-200/20">
+<div class="bg-surface-container-low rounded-lg overflow-hidden border border-slate-200/20 shadow-sm">
 <div class="overflow-x-auto">
 <table class="w-full text-left border-collapse">
 <thead>
 <tr class="bg-surface-container-high/50">
-<th class="px-6 py-4 font-work-sans text-[10px] uppercase tracking-[0.12em] font-bold text-on-surface-variant">Student Name</th>
-<th class="px-6 py-4 font-work-sans text-[10px] uppercase tracking-[0.12em] font-bold text-on-surface-variant">Belt Rank</th>
-<th class="px-6 py-4 font-work-sans text-[10px] uppercase tracking-[0.12em] font-bold text-on-surface-variant">Status</th>
-<th class="px-6 py-4 font-work-sans text-[10px] uppercase tracking-[0.12em] font-bold text-on-surface-variant text-right">Last Attendance</th>
-<th class="px-6 py-4 font-work-sans text-[10px] uppercase tracking-[0.12em] font-bold text-on-surface-variant text-right">Action</th>
+<th class="px-5 py-3 font-work-sans text-[9px] uppercase tracking-[0.12em] font-bold text-on-surface-variant">Student Name</th>
+<th class="px-5 py-3 font-work-sans text-[9px] uppercase tracking-[0.12em] font-bold text-on-surface-variant">Belt Rank</th>
+<th class="px-5 py-3 font-work-sans text-[9px] uppercase tracking-[0.12em] font-bold text-on-surface-variant">Status</th>
+<th class="px-5 py-3 font-work-sans text-[9px] uppercase tracking-[0.12em] font-bold text-on-surface-variant text-right">Last Attendance</th>
+<th class="px-5 py-3 font-work-sans text-[9px] uppercase tracking-[0.12em] font-bold text-on-surface-variant text-right">Action</th>
 </tr>
 </thead>
 <tbody class="divide-y divide-slate-200/30">
 <!-- Student Row 1 -->
-<tr class="bg-surface-container-lowest hover:bg-white transition-colors">
-<td class="px-6 py-4">
-<div class="flex items-center gap-x-3">
-<div class="w-8 h-8 bg-primary/5 rounded-full flex items-center justify-center font-bold text-primary font-noto-serif text-xs">AS</div>
+<tr class="bg-surface-container-lowest hover:bg-slate-50 transition-colors">
+<td class="px-5 py-3.5">
+<div class="flex items-center gap-x-2.5">
+<div class="w-7 h-7 bg-primary/5 rounded-full flex items-center justify-center font-bold text-primary font-noto-serif text-[10px]">AS</div>
 <div>
-<p class="font-semibold text-primary font-work-sans text-[13px]">Alexander Sterling</p>
-<p class="text-[10px] text-on-surface-variant">Member since Jan 2023</p>
+<p class="font-semibold text-primary font-work-sans text-[12px]">Alexander Sterling</p>
+<p class="text-[9px] text-on-surface-variant">Member since Jan 2023</p>
 </div>
 </div>
 </td>
-<td class="px-6 py-4">
-<span class="inline-flex items-center px-2 py-0.5 rounded-sm text-[9px] font-bold uppercase tracking-wider bg-primary text-on-primary">Black Belt</span>
+<td class="px-5 py-3.5">
+<span class="inline-flex items-center px-1.5 py-0.5 rounded-sm text-[8px] font-bold uppercase tracking-wider bg-primary text-on-primary">Black Belt</span>
 </td>
-<td class="px-6 py-4">
-<div class="flex items-center gap-x-2">
+<td class="px-5 py-3.5">
+<div class="flex items-center gap-x-1.5">
 <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-<span class="text-[12px] font-medium text-on-surface">Active</span>
+<span class="text-[11px] font-medium text-on-surface">Active</span>
 </div>
 </td>
-<td class="px-6 py-4 text-right font-work-sans text-[12px] text-on-surface-variant">2 hours ago</td>
-<td class="px-6 py-4 text-right">
-<a class="text-[12px] font-bold text-secondary hover:text-secondary/80 hover:underline underline-offset-4 decoration-2 transition-colors cursor-pointer" href="#">View Profile</a>
+<td class="px-5 py-3.5 text-right font-work-sans text-[11px] text-on-surface-variant">2 hours ago</td>
+<td class="px-5 py-3.5 text-right">
+<button class="text-[11px] font-bold text-secondary hover:text-secondary/80 hover:underline underline-offset-4 decoration-2 transition-all cursor-pointer active:scale-95">View Profile</button>
 </td>
 </tr>
 <!-- Student Row 2 -->
-<tr class="bg-surface-container-low hover:bg-white transition-colors">
-<td class="px-6 py-4">
-<div class="flex items-center gap-x-3">
-<div class="w-8 h-8 bg-primary/5 rounded-full flex items-center justify-center font-bold text-primary font-noto-serif text-xs">MC</div>
+<tr class="bg-surface-container-low hover:bg-slate-50 transition-colors">
+<td class="px-5 py-3.5">
+<div class="flex items-center gap-x-2.5">
+<div class="w-7 h-7 bg-primary/5 rounded-full flex items-center justify-center font-bold text-primary font-noto-serif text-[10px]">MC</div>
 <div>
-<p class="font-semibold text-primary font-work-sans text-[13px]">Maya Chen</p>
-<p class="text-[10px] text-on-surface-variant">Member since Mar 2024</p>
+<p class="font-semibold text-primary font-work-sans text-[12px]">Maya Chen</p>
+<p class="text-[9px] text-on-surface-variant">Member since Mar 2024</p>
 </div>
 </div>
 </td>
-<td class="px-6 py-4">
-<span class="inline-flex items-center px-2 py-0.5 rounded-sm text-[9px] font-bold uppercase tracking-wider bg-blue-100 text-blue-800 ring-1 ring-blue-200">Blue Belt</span>
+<td class="px-5 py-3.5">
+<span class="inline-flex items-center px-1.5 py-0.5 rounded-sm text-[8px] font-bold uppercase tracking-wider bg-blue-100 text-blue-800 ring-1 ring-blue-200">Blue Belt</span>
 </td>
-<td class="px-6 py-4">
-<div class="flex items-center gap-x-2">
+<td class="px-5 py-3.5">
+<div class="flex items-center gap-x-1.5">
 <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-<span class="text-[12px] font-medium text-on-surface">Active</span>
+<span class="text-[11px] font-medium text-on-surface">Active</span>
 </div>
 </td>
-<td class="px-6 py-4 text-right font-work-sans text-[12px] text-on-surface-variant">Yesterday</td>
-<td class="px-6 py-4 text-right">
-<a class="text-[12px] font-bold text-secondary hover:text-secondary/80 hover:underline underline-offset-4 decoration-2 transition-colors cursor-pointer" href="#">View Profile</a>
+<td class="px-5 py-3.5 text-right font-work-sans text-[11px] text-on-surface-variant">Yesterday</td>
+<td class="px-5 py-3.5 text-right">
+<button class="text-[11px] font-bold text-secondary hover:text-secondary/80 hover:underline underline-offset-4 decoration-2 transition-all cursor-pointer active:scale-95">View Profile</button>
 </td>
 </tr>
 <!-- Student Row 3 -->
-<tr class="bg-surface-container-lowest hover:bg-white transition-colors">
-<td class="px-6 py-4">
-<div class="flex items-center gap-x-3">
-<div class="w-8 h-8 bg-primary/5 rounded-full flex items-center justify-center font-bold text-primary font-noto-serif text-xs">JW</div>
+<tr class="bg-surface-container-lowest hover:bg-slate-50 transition-colors">
+<td class="px-5 py-3.5">
+<div class="flex items-center gap-x-2.5">
+<div class="w-7 h-7 bg-primary/5 rounded-full flex items-center justify-center font-bold text-primary font-noto-serif text-[10px]">JW</div>
 <div>
-<p class="font-semibold text-primary font-work-sans text-[13px]">Julian Weaver</p>
-<p class="text-[10px] text-on-surface-variant">Member since Nov 2022</p>
+<p class="font-semibold text-primary font-work-sans text-[12px]">Julian Weaver</p>
+<p class="text-[9px] text-on-surface-variant">Member since Nov 2022</p>
 </div>
 </div>
 </td>
-<td class="px-6 py-4">
-<span class="inline-flex items-center px-2 py-0.5 rounded-sm text-[9px] font-bold uppercase tracking-wider bg-green-100 text-green-800 ring-1 ring-green-200">Green Belt</span>
+<td class="px-5 py-3.5">
+<span class="inline-flex items-center px-1.5 py-0.5 rounded-sm text-[8px] font-bold uppercase tracking-wider bg-green-100 text-green-800 ring-1 ring-green-200">Green Belt</span>
 </td>
-<td class="px-6 py-4">
-<div class="flex items-center gap-x-2">
+<td class="px-5 py-3.5">
+<div class="flex items-center gap-x-1.5">
 <span class="w-1.5 h-1.5 rounded-full bg-slate-300"></span>
-<span class="text-[12px] font-medium text-on-surface-variant">Inactive</span>
+<span class="text-[11px] font-medium text-on-surface-variant">Inactive</span>
 </div>
 </td>
-<td class="px-6 py-4 text-right font-work-sans text-[12px] text-on-surface-variant">2 weeks ago</td>
-<td class="px-6 py-4 text-right">
-<a class="text-[12px] font-bold text-secondary hover:text-secondary/80 hover:underline underline-offset-4 decoration-2 transition-colors cursor-pointer" href="#">View Profile</a>
+<td class="px-5 py-3.5 text-right font-work-sans text-[11px] text-on-surface-variant">2 weeks ago</td>
+<td class="px-5 py-3.5 text-right">
+<button class="text-[11px] font-bold text-secondary hover:text-secondary/80 hover:underline underline-offset-4 decoration-2 transition-all cursor-pointer active:scale-95">View Profile</button>
 </td>
 </tr>
 <!-- Student Row 4 -->
-<tr class="bg-surface-container-low hover:bg-white transition-colors">
-<td class="px-6 py-4">
-<div class="flex items-center gap-x-3">
-<div class="w-8 h-8 bg-primary/5 rounded-full flex items-center justify-center font-bold text-primary font-noto-serif text-xs">EB</div>
+<tr class="bg-surface-container-low hover:bg-slate-50 transition-colors">
+<td class="px-5 py-3.5">
+<div class="flex items-center gap-x-2.5">
+<div class="w-7 h-7 bg-primary/5 rounded-full flex items-center justify-center font-bold text-primary font-noto-serif text-[10px]">EB</div>
 <div>
-<p class="font-semibold text-primary font-work-sans text-[13px]">Elena Belov</p>
-<p class="text-[10px] text-on-surface-variant">Member since Jun 2024</p>
+<p class="font-semibold text-primary font-work-sans text-[12px]">Elena Belov</p>
+<p class="text-[9px] text-on-surface-variant">Member since Jun 2024</p>
 </div>
 </div>
 </td>
-<td class="px-6 py-4">
-<span class="inline-flex items-center px-2 py-0.5 rounded-sm text-[9px] font-bold uppercase tracking-wider bg-white text-on-surface ring-1 ring-outline-variant/30">White Belt</span>
+<td class="px-5 py-3.5">
+<span class="inline-flex items-center px-1.5 py-0.5 rounded-sm text-[8px] font-bold uppercase tracking-wider bg-white text-on-surface ring-1 ring-outline-variant/30">White Belt</span>
 </td>
-<td class="px-6 py-4">
-<div class="flex items-center gap-x-2">
+<td class="px-5 py-3.5">
+<div class="flex items-center gap-x-1.5">
 <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-<span class="text-[12px] font-medium text-on-surface">Active</span>
+<span class="text-[11px] font-medium text-on-surface">Active</span>
 </div>
 </td>
-<td class="px-6 py-4 text-right font-work-sans text-[12px] text-on-surface-variant">Today, 10:00 AM</td>
-<td class="px-6 py-4 text-right">
-<a class="text-[12px] font-bold text-secondary hover:text-secondary/80 hover:underline underline-offset-4 decoration-2 transition-colors cursor-pointer" href="#">View Profile</a>
+<td class="px-5 py-3.5 text-right font-work-sans text-[11px] text-on-surface-variant">Today, 10:00 AM</td>
+<td class="px-5 py-3.5 text-right">
+<button class="text-[11px] font-bold text-secondary hover:text-secondary/80 hover:underline underline-offset-4 decoration-2 transition-all cursor-pointer active:scale-95">View Profile</button>
 </td>
 </tr>
 <!-- Student Row 5 -->
-<tr class="bg-surface-container-lowest hover:bg-white transition-colors">
-<td class="px-6 py-4">
-<div class="flex items-center gap-x-3">
-<div class="w-8 h-8 bg-primary/5 rounded-full flex items-center justify-center font-bold text-primary font-noto-serif text-xs">DM</div>
+<tr class="bg-surface-container-lowest hover:bg-slate-50 transition-colors">
+<td class="px-5 py-3.5">
+<div class="flex items-center gap-x-2.5">
+<div class="w-7 h-7 bg-primary/5 rounded-full flex items-center justify-center font-bold text-primary font-noto-serif text-[10px]">DM</div>
 <div>
-<p class="font-semibold text-primary font-work-sans text-[13px]">David Morales</p>
-<p class="text-[10px] text-on-surface-variant">Member since Aug 2023</p>
+<p class="font-semibold text-primary font-work-sans text-[12px]">David Morales</p>
+<p class="text-[9px] text-on-surface-variant">Member since Aug 2023</p>
 </div>
 </div>
 </td>
-<td class="px-6 py-4">
-<span class="inline-flex items-center px-2 py-0.5 rounded-sm text-[9px] font-bold uppercase tracking-wider bg-yellow-100 text-yellow-800 ring-1 ring-yellow-200">Yellow Belt</span>
+<td class="px-5 py-3.5">
+<span class="inline-flex items-center px-1.5 py-0.5 rounded-sm text-[8px] font-bold uppercase tracking-wider bg-yellow-100 text-yellow-800 ring-1 ring-yellow-200">Yellow Belt</span>
 </td>
-<td class="px-6 py-4">
-<div class="flex items-center gap-x-2">
+<td class="px-5 py-3.5">
+<div class="flex items-center gap-x-1.5">
 <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-<span class="text-[12px] font-medium text-on-surface">Active</span>
+<span class="text-[11px] font-medium text-on-surface">Active</span>
 </div>
 </td>
-<td class="px-6 py-4 text-right font-work-sans text-[12px] text-on-surface-variant">4 days ago</td>
-<td class="px-6 py-4 text-right">
-<a class="text-[12px] font-bold text-secondary hover:text-secondary/80 hover:underline underline-offset-4 decoration-2 transition-colors cursor-pointer" href="#">View Profile</a>
+<td class="px-5 py-3.5 text-right font-work-sans text-[11px] text-on-surface-variant">4 days ago</td>
+<td class="px-5 py-3.5 text-right">
+<button class="text-[11px] font-bold text-secondary hover:text-secondary/80 hover:underline underline-offset-4 decoration-2 transition-all cursor-pointer active:scale-95">View Profile</button>
 </td>
 </tr>
 </tbody>
 </table>
 </div>
 <!-- Pagination Placeholder -->
-<div class="px-6 py-4 bg-surface-container-high/30 border-t border-slate-200/20 flex justify-between items-center">
-<p class="text-[10px] text-on-surface-variant font-work-sans">Showing 5 of 124 results</p>
+<div class="px-5 py-3 bg-surface-container-high/30 border-t border-slate-200/20 flex justify-between items-center">
+<p class="text-[9px] text-on-surface-variant font-work-sans font-medium">Showing 5 of 124 results</p>
 <div class="flex gap-x-2">
-<button class="px-3 py-1.5 bg-surface-container-lowest rounded-sm text-[9px] font-bold uppercase tracking-widest text-primary hover:bg-primary hover:text-on-primary active:scale-95 transition-all cursor-pointer">Prev</button>
-<button class="px-3 py-1.5 bg-surface-container-lowest rounded-sm text-[9px] font-bold uppercase tracking-widest text-primary hover:bg-primary hover:text-on-primary active:scale-95 transition-all cursor-pointer">Next</button>
+<button class="px-3 py-1 bg-surface-container-lowest rounded-sm text-[8px] font-bold uppercase tracking-widest text-primary border border-slate-200/50 hover:bg-primary hover:text-on-primary hover:border-primary active:scale-95 transition-all cursor-pointer shadow-sm">Prev</button>
+<button class="px-3 py-1 bg-surface-container-lowest rounded-sm text-[8px] font-bold uppercase tracking-widest text-primary border border-slate-200/50 hover:bg-primary hover:text-on-primary hover:border-primary active:scale-95 transition-all cursor-pointer shadow-sm">Next</button>
 </div>
 </div>
 </div>
 <!-- Bento Layout Info Section -->
-<div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
-<div class="md:col-span-2 bg-primary p-6 rounded-lg flex flex-col justify-between text-on-primary relative overflow-hidden group">
+<div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-5">
+<div class="md:col-span-2 bg-primary p-6 rounded-lg flex flex-col justify-between text-on-primary relative overflow-hidden group shadow-md">
 <div class="relative z-10">
-<h3 class="font-noto-serif text-xl font-bold mb-3">Upcoming Promotions</h3>
-<p class="text-[12px] text-on-primary/70 font-work-sans max-w-sm leading-relaxed">12 students have completed the required hours for their next rank evaluation scheduled for the next ceremony.</p>
+<h3 class="font-noto-serif text-lg font-bold mb-2">Upcoming Promotions</h3>
+<p class="text-[11px] text-on-primary/70 font-work-sans max-w-sm leading-relaxed">12 students have completed the required hours for their next rank evaluation scheduled for the next ceremony.</p>
 </div>
-<button class="relative z-10 self-start mt-6 bg-on-primary text-primary px-4 py-1.5 rounded-lg font-bold text-[11px] tracking-wide hover:bg-white hover:shadow-lg active:scale-95 transition-all cursor-pointer">Review Candidates</button>
-<div class="absolute right-[-15px] bottom-[-15px] opacity-10 group-hover:scale-110 transition-transform duration-700 pointer-events-none">
-<span class="material-symbols-outlined text-[140px]" data-icon="military_tech">military_tech</span>
+<button class="relative z-10 self-start mt-5 bg-on-primary text-primary px-4 py-1.5 rounded-lg font-bold text-[10px] tracking-wide hover:bg-white hover:shadow-lg active:scale-95 transition-all cursor-pointer">Review Candidates</button>
+<div class="absolute right-[-10px] bottom-[-10px] opacity-10 group-hover:scale-105 transition-transform duration-700 pointer-events-none">
+<span class="material-symbols-outlined text-[120px]" data-icon="military_tech">military_tech</span>
 </div>
 </div>
-<div class="bg-secondary p-6 rounded-lg text-on-secondary">
-<h3 class="font-noto-serif text-xl font-bold mb-4">Quick Insights</h3>
-<ul class="space-y-3">
-<li class="flex justify-between items-center border-b border-white/20 pb-2">
-<span class="text-xs opacity-80 font-work-sans">New Enrollees (Month)</span>
-<span class="font-bold text-[13px]">+14</span>
+<div class="bg-secondary p-6 rounded-lg text-on-secondary shadow-md">
+<h3 class="font-noto-serif text-lg font-bold mb-4">Quick Insights</h3>
+<ul class="space-y-2.5">
+<li class="flex justify-between items-center border-b border-white/20 pb-1.5">
+<span class="text-[10px] opacity-80 font-work-sans">New Enrollees (Month)</span>
+<span class="font-bold text-[12px]">+14</span>
 </li>
-<li class="flex justify-between items-center border-b border-white/20 pb-2">
-<span class="text-xs opacity-80 font-work-sans">Average Attendance</span>
-<span class="font-bold text-[13px]">88%</span>
+<li class="flex justify-between items-center border-b border-white/20 pb-1.5">
+<span class="text-[10px] opacity-80 font-work-sans">Average Attendance</span>
+<span class="font-bold text-[12px]">88%</span>
 </li>
 <li class="flex justify-between items-center">
-<span class="text-xs opacity-80 font-work-sans">Belt Graduations</span>
-<span class="font-bold text-[13px]">5</span>
+<span class="text-[10px] opacity-80 font-work-sans">Belt Graduations</span>
+<span class="font-bold text-[12px]">5</span>
 </li>
 </ul>
 </div>
 </div>
 </div>
 </main>
-<!-- FAB Suppression (Per Instructions - Task Focused Screen) -->
 </body></html>
