@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>The Disciplined Editorial - Student Management</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700;900&amp;family=Work+Sans:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-background": "#191c1d",
+              "on-secondary-container": "#fffbff",
+              "inverse-surface": "#2e3132",
+              "on-surface-variant": "#444650",
+              "secondary-fixed": "#ffdad9",
+              "on-primary-fixed": "#00174a",
+              "primary-fixed-dim": "#b3c5ff",
+              "outline-variant": "#c5c6d2",
+              "inverse-on-surface": "#f0f1f2",
+              "secondary-container": "#dc2e44",
+              "primary-container": "#002366",
+              "tertiary-fixed-dim": "#c8c6c5",
+              "on-tertiary-container": "#918f8f",
+              "on-surface": "#191c1d",
+              "on-secondary": "#ffffff",
+              "secondary-fixed-dim": "#ffb3b3",
+              "primary-fixed": "#dbe1ff",
+              "surface-dim": "#d9dadb",
+              "surface-variant": "#e1e3e4",
+              "on-tertiary-fixed-variant": "#474746",
+              "on-secondary-fixed-variant": "#920021",
+              "tertiary": "#141414",
+              "surface-container-lowest": "#ffffff",
+              "outline": "#757682",
+              "secondary": "#b80a2e",
+              "surface-container": "#edeeef",
+              "surface-tint": "#435b9f",
+              "on-tertiary-fixed": "#1c1b1b",
+              "on-error-container": "#93000a",
+              "error-container": "#ffdad6",
+              "surface": "#f8f9fa",
+              "on-tertiary": "#ffffff",
+              "primary": "#00113a",
+              "surface-container-highest": "#e1e3e4",
+              "on-primary-fixed-variant": "#2a4386",
+              "tertiary-fixed": "#e5e2e1",
+              "on-secondary-fixed": "#400009",
+              "error": "#ba1a1a",
+              "background": "#f8f9fa",
+              "inverse-primary": "#b3c5ff",
+              "on-primary-container": "#758dd5",
+              "surface-bright": "#f8f9fa",
+              "on-primary": "#ffffff",
+              "surface-container-high": "#e7e8e9",
+              "on-error": "#ffffff",
+              "tertiary-container": "#282828",
+              "surface-container-low": "#f3f4f5"
+            },
+            fontFamily: {
+              "headline": ["Noto Serif"],
+              "body": ["Work Sans"],
+              "label": ["Work Sans"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Work Sans', sans-serif;
+            background-color: #f8f9fa;
+        }
+        .font-noto-serif { font-family: 'Noto Serif', serif; }
+        .font-work-sans { font-family: 'Work Sans', sans-serif; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface">
+<!-- SideNavBar -->
+<nav class="fixed left-0 top-0 h-full w-64 z-[60] bg-slate-100 dark:bg-slate-900 flex flex-col h-full py-8 gap-y-6 border-r border-slate-200/20 dark:border-slate-800/20 font-work-sans text-sm tracking-tight text-blue-950 dark:text-blue-400">
+<div class="px-6 mb-4">
+<h1 class="font-noto-serif text-xl font-black text-blue-950 dark:text-blue-50">Kodokan Management</h1>
+<p class="text-[10px] uppercase tracking-[0.2em] opacity-60">The Modern Dojo</p>
+</div>
+<div class="flex flex-col flex-grow">
+<!-- Dashboard Tab (Inactive) -->
+<a class="flex items-center gap-x-3 px-6 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-200/40 dark:hover:bg-slate-800/40 transition-all duration-200 active:translate-x-1" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span>Dashboard</span>
+</a>
+<!-- Students Tab (Active) -->
+<a class="flex items-center gap-x-3 px-6 py-3 text-blue-950 dark:text-blue-50 font-semibold border-r-4 border-red-700 dark:border-red-600 bg-white dark:bg-slate-800 transition-all duration-200 active:translate-x-1" href="#">
+<span class="material-symbols-outlined" data-icon="groups">groups</span>
+<span>Students</span>
+</a>
+<!-- Schedule Tab (Inactive) -->
+<a class="flex items-center gap-x-3 px-6 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-200/40 dark:hover:bg-slate-800/40 transition-all duration-200 active:translate-x-1" href="#">
+<span class="material-symbols-outlined" data-icon="calendar_today">calendar_today</span>
+<span>Schedule</span>
+</a>
+<!-- Finance Tab (Inactive) -->
+<a class="flex items-center gap-x-3 px-6 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-200/40 dark:hover:bg-slate-800/40 transition-all duration-200 active:translate-x-1" href="#">
+<span class="material-symbols-outlined" data-icon="payments">payments</span>
+<span>Finance</span>
+</a>
+</div>
+<div class="mt-auto border-t border-slate-200/10 pt-4 flex flex-col">
+<a class="flex items-center gap-x-3 px-6 py-3 text-slate-500 hover:text-blue-950 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span>Settings</span>
+</a>
+<a class="flex items-center gap-x-3 px-6 py-3 text-slate-500 hover:text-blue-950 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span>Logout</span>
+</a>
+</div>
+</nav>
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-slate-50/80 dark:bg-slate-950/80 backdrop-blur-md flex justify-between items-center px-12 h-20 ml-64">
+<div class="flex items-center bg-slate-200/50 dark:bg-slate-800/50 px-4 py-2 rounded-lg w-96">
+<span class="material-symbols-outlined text-blue-900/40 mr-2" data-icon="search">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm font-work-sans w-full text-blue-900 dark:text-blue-50" placeholder="Search students..." type="text"/>
+</div>
+<div class="flex items-center gap-x-8 pr-64">
+<div class="flex items-center gap-x-4">
+<button class="p-2 rounded-full hover:bg-slate-200/50 dark:hover:bg-slate-800/50 transition-colors scale-95 duration-150">
+<span class="material-symbols-outlined text-blue-900 dark:text-blue-400" data-icon="notifications">notifications</span>
+</button>
+<button class="p-2 rounded-full hover:bg-slate-200/50 dark:hover:bg-slate-800/50 transition-colors scale-95 duration-150">
+<span class="material-symbols-outlined text-blue-900 dark:text-blue-400" data-icon="payments">payments</span>
+</button>
+</div>
+<button class="bg-secondary text-on-secondary px-6 py-2.5 rounded-lg text-sm font-semibold tracking-wide hover:brightness-110 transition-all">
+                Add Student
+            </button>
+<div class="flex items-center gap-x-3">
+<div class="text-right">
+<p class="text-xs font-bold text-blue-900 dark:text-blue-50 leading-none">Sensei Tanaka</p>
+<p class="text-[10px] text-blue-900/60 dark:text-blue-400">Head Instructor</p>
+</div>
+<img class="w-10 h-10 rounded-full object-cover ring-2 ring-primary/10" data-alt="Sensei Profile portrait" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAcx7_QxS-43shQGHZho4AD6EujJn_egveb68ImFF6wLbkOe79RQGSTcNXLgXB4DMx5E_FWz7dpAWDe7ZjcrX5ZOGIb8C8lrMR-p6hCm0BXwK6k70urwuMWkvT77iv6PZmHEn1BX8c1J7sA7_kESK4cWwpxfzTMJH9Q3gZgfoefF08_YJODYYo5tFB7OpN4Ez-24Wmfa2UDurUEkfRhIUSMORaml4ESqrHvT6rPZEd49NdctpYXEEuWyZOjMsci6Va3JMU7LIse1DQ"/>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="pl-64 pt-20 min-h-screen bg-surface">
+<div class="p-12 max-w-7xl mx-auto">
+<!-- Hero Stats / Header -->
+<div class="flex justify-between items-end mb-12">
+<div>
+<h2 class="font-noto-serif text-4xl font-black text-primary mb-2">Student Registry</h2>
+<p class="text-on-surface-variant font-work-sans">Manage and monitor the progress of your academy members.</p>
+</div>
+<div class="flex gap-x-12">
+<div class="text-right">
+<span class="block font-noto-serif text-3xl font-bold text-primary">124</span>
+<span class="text-[10px] uppercase tracking-widest font-semibold text-on-surface-variant">Active Students</span>
+</div>
+<div class="text-right">
+<span class="block font-noto-serif text-3xl font-bold text-secondary">8</span>
+<span class="text-[10px] uppercase tracking-widest font-semibold text-on-surface-variant">Black Belts</span>
+</div>
+</div>
+</div>
+<!-- Table Section -->
+<div class="bg-surface-container-low rounded-xl overflow-hidden">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-high">
+<th class="px-8 py-5 font-work-sans text-[11px] uppercase tracking-[0.1em] font-bold text-on-surface-variant">Student Name</th>
+<th class="px-8 py-5 font-work-sans text-[11px] uppercase tracking-[0.1em] font-bold text-on-surface-variant">Belt Rank</th>
+<th class="px-8 py-5 font-work-sans text-[11px] uppercase tracking-[0.1em] font-bold text-on-surface-variant">Status</th>
+<th class="px-8 py-5 font-work-sans text-[11px] uppercase tracking-[0.1em] font-bold text-on-surface-variant text-right">Last Attendance</th>
+<th class="px-8 py-5 font-work-sans text-[11px] uppercase tracking-[0.1em] font-bold text-on-surface-variant text-right">Action</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-white/10">
+<!-- Student Row 1 -->
+<tr class="bg-surface-container-lowest hover:bg-white transition-colors">
+<td class="px-8 py-6">
+<div class="flex items-center gap-x-4">
+<div class="w-10 h-10 bg-primary/5 rounded-full flex items-center justify-center font-bold text-primary font-noto-serif">AS</div>
+<div>
+<p class="font-semibold text-primary font-work-sans">Alexander Sterling</p>
+<p class="text-xs text-on-surface-variant">Member since Jan 2023</p>
+</div>
+</div>
+</td>
+<td class="px-8 py-6">
+<span class="inline-flex items-center px-3 py-1 rounded-sm text-[10px] font-bold uppercase tracking-wider bg-primary text-on-primary">Black Belt</span>
+</td>
+<td class="px-8 py-6">
+<div class="flex items-center gap-x-2">
+<span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+<span class="text-sm font-medium text-on-surface">Active</span>
+</div>
+</td>
+<td class="px-8 py-6 text-right font-work-sans text-sm text-on-surface-variant">2 hours ago</td>
+<td class="px-8 py-6 text-right">
+<a class="text-sm font-semibold text-secondary hover:underline underline-offset-4 decoration-2" href="#">View Profile</a>
+</td>
+</tr>
+<!-- Student Row 2 -->
+<tr class="bg-surface-container-low hover:bg-white transition-colors">
+<td class="px-8 py-6">
+<div class="flex items-center gap-x-4">
+<div class="w-10 h-10 bg-primary/5 rounded-full flex items-center justify-center font-bold text-primary font-noto-serif">MC</div>
+<div>
+<p class="font-semibold text-primary font-work-sans">Maya Chen</p>
+<p class="text-xs text-on-surface-variant">Member since Mar 2024</p>
+</div>
+</div>
+</td>
+<td class="px-8 py-6">
+<span class="inline-flex items-center px-3 py-1 rounded-sm text-[10px] font-bold uppercase tracking-wider bg-blue-100 text-blue-800 ring-1 ring-blue-200">Blue Belt</span>
+</td>
+<td class="px-8 py-6">
+<div class="flex items-center gap-x-2">
+<span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+<span class="text-sm font-medium text-on-surface">Active</span>
+</div>
+</td>
+<td class="px-8 py-6 text-right font-work-sans text-sm text-on-surface-variant">Yesterday</td>
+<td class="px-8 py-6 text-right">
+<a class="text-sm font-semibold text-secondary hover:underline underline-offset-4 decoration-2" href="#">View Profile</a>
+</td>
+</tr>
+<!-- Student Row 3 -->
+<tr class="bg-surface-container-lowest hover:bg-white transition-colors">
+<td class="px-8 py-6">
+<div class="flex items-center gap-x-4">
+<div class="w-10 h-10 bg-primary/5 rounded-full flex items-center justify-center font-bold text-primary font-noto-serif">JW</div>
+<div>
+<p class="font-semibold text-primary font-work-sans">Julian Weaver</p>
+<p class="text-xs text-on-surface-variant">Member since Nov 2022</p>
+</div>
+</div>
+</td>
+<td class="px-8 py-6">
+<span class="inline-flex items-center px-3 py-1 rounded-sm text-[10px] font-bold uppercase tracking-wider bg-green-100 text-green-800 ring-1 ring-green-200">Green Belt</span>
+</td>
+<td class="px-8 py-6">
+<div class="flex items-center gap-x-2">
+<span class="w-2 h-2 rounded-full bg-slate-300"></span>
+<span class="text-sm font-medium text-on-surface-variant">Inactive</span>
+</div>
+</td>
+<td class="px-8 py-6 text-right font-work-sans text-sm text-on-surface-variant">2 weeks ago</td>
+<td class="px-8 py-6 text-right">
+<a class="text-sm font-semibold text-secondary hover:underline underline-offset-4 decoration-2" href="#">View Profile</a>
+</td>
+</tr>
+<!-- Student Row 4 -->
+<tr class="bg-surface-container-low hover:bg-white transition-colors">
+<td class="px-8 py-6">
+<div class="flex items-center gap-x-4">
+<div class="w-10 h-10 bg-primary/5 rounded-full flex items-center justify-center font-bold text-primary font-noto-serif">EB</div>
+<div>
+<p class="font-semibold text-primary font-work-sans">Elena Belov</p>
+<p class="text-xs text-on-surface-variant">Member since Jun 2024</p>
+</div>
+</div>
+</td>
+<td class="px-8 py-6">
+<span class="inline-flex items-center px-3 py-1 rounded-sm text-[10px] font-bold uppercase tracking-wider bg-white text-on-surface ring-1 ring-outline-variant/30">White Belt</span>
+</td>
+<td class="px-8 py-6">
+<div class="flex items-center gap-x-2">
+<span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+<span class="text-sm font-medium text-on-surface">Active</span>
+</div>
+</td>
+<td class="px-8 py-6 text-right font-work-sans text-sm text-on-surface-variant">Today, 10:00 AM</td>
+<td class="px-8 py-6 text-right">
+<a class="text-sm font-semibold text-secondary hover:underline underline-offset-4 decoration-2" href="#">View Profile</a>
+</td>
+</tr>
+<!-- Student Row 5 -->
+<tr class="bg-surface-container-lowest hover:bg-white transition-colors">
+<td class="px-8 py-6">
+<div class="flex items-center gap-x-4">
+<div class="w-10 h-10 bg-primary/5 rounded-full flex items-center justify-center font-bold text-primary font-noto-serif">DM</div>
+<div>
+<p class="font-semibold text-primary font-work-sans">David Morales</p>
+<p class="text-xs text-on-surface-variant">Member since Aug 2023</p>
+</div>
+</div>
+</td>
+<td class="px-8 py-6">
+<span class="inline-flex items-center px-3 py-1 rounded-sm text-[10px] font-bold uppercase tracking-wider bg-yellow-100 text-yellow-800 ring-1 ring-yellow-200">Yellow Belt</span>
+</td>
+<td class="px-8 py-6">
+<div class="flex items-center gap-x-2">
+<span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+<span class="text-sm font-medium text-on-surface">Active</span>
+</div>
+</td>
+<td class="px-8 py-6 text-right font-work-sans text-sm text-on-surface-variant">4 days ago</td>
+<td class="px-8 py-6 text-right">
+<a class="text-sm font-semibold text-secondary hover:underline underline-offset-4 decoration-2" href="#">View Profile</a>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination Placeholder -->
+<div class="px-8 py-6 bg-surface-container-high border-t border-white/5 flex justify-between items-center">
+<p class="text-xs text-on-surface-variant font-work-sans">Showing 5 of 124 results</p>
+<div class="flex gap-x-2">
+<button class="px-4 py-2 bg-surface-container-lowest rounded-sm text-xs font-bold uppercase tracking-widest text-primary hover:bg-primary hover:text-on-primary transition-all">Prev</button>
+<button class="px-4 py-2 bg-surface-container-lowest rounded-sm text-xs font-bold uppercase tracking-widest text-primary hover:bg-primary hover:text-on-primary transition-all">Next</button>
+</div>
+</div>
+</div>
+<!-- Bento Layout Info Section -->
+<div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="md:col-span-2 bg-primary p-8 rounded-xl flex flex-col justify-between text-on-primary relative overflow-hidden group">
+<div class="relative z-10">
+<h3 class="font-noto-serif text-2xl font-bold mb-4">Upcoming Promotions</h3>
+<p class="text-on-primary/70 font-work-sans max-w-md">12 students have completed the required hours for their next rank evaluation scheduled for the next belt ceremony.</p>
+</div>
+<button class="relative z-10 self-start mt-8 bg-on-primary text-primary px-6 py-2 rounded-lg font-bold text-sm tracking-wide hover:bg-white transition-all">Review Candidates</button>
+<div class="absolute right-[-20px] bottom-[-20px] opacity-10 group-hover:scale-110 transition-transform duration-700">
+<span class="material-symbols-outlined text-[180px]" data-icon="military_tech">military_tech</span>
+</div>
+</div>
+<div class="bg-secondary p-8 rounded-xl text-on-secondary">
+<h3 class="font-noto-serif text-2xl font-bold mb-4">Quick Insights</h3>
+<ul class="space-y-4">
+<li class="flex justify-between items-center border-b border-white/20 pb-2">
+<span class="text-sm opacity-80 font-work-sans">New Enrollees (Month)</span>
+<span class="font-bold">+14</span>
+</li>
+<li class="flex justify-between items-center border-b border-white/20 pb-2">
+<span class="text-sm opacity-80 font-work-sans">Average Attendance</span>
+<span class="font-bold">88%</span>
+</li>
+<li class="flex justify-between items-center">
+<span class="text-sm opacity-80 font-work-sans">Belt Graduations</span>
+<span class="font-bold">5</span>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</main>
+<!-- FAB Suppression (Per Instructions - Task Focused Screen) -->
+<!-- FAB is suppressed as this is a focused Management/Details screen -->
+</body></html>
