@@ -3,11 +3,13 @@
 <html class="light" lang="en"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>The Disciplined Editorial - Student Management</title>
+<title>Kodokan Management | Dashboard</title>
+<!-- Google Fonts: Noto Serif & Work Sans -->
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700;900&amp;family=Work+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700;900&amp;family=Work+Sans:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <script id="tailwind-config">
       tailwind.config = {
         darkMode: "class",
@@ -63,6 +65,8 @@
               "surface-container-low": "#f3f4f5"
             },
             fontFamily: {
+              "noto-serif": ["Noto Serif", "serif"],
+              "work-sans": ["Work Sans", "sans-serif"],
               "headline": ["Noto Serif"],
               "body": ["Work Sans"],
               "label": ["Work Sans"]
@@ -73,287 +77,255 @@
       }
     </script>
 <style>
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-        }
-        body {
-            font-family: 'Work Sans', sans-serif;
-            background-color: #f8f9fa;
-        }
-        .font-noto-serif { font-family: 'Noto Serif', serif; }
-        .font-work-sans { font-family: 'Work Sans', sans-serif; }
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      .belt-shadow {
+        box-shadow: 0 4px 20px -2px rgba(0, 17, 58, 0.08);
+      }
     </style>
 </head>
-<body class="bg-surface text-on-surface">
-<!-- SideNavBar -->
-<nav class="fixed left-0 top-0 h-full w-64 z-[60] bg-slate-100 dark:bg-slate-900 flex flex-col h-full py-8 gap-y-6 border-r border-slate-200/20 dark:border-slate-800/20 font-work-sans text-sm tracking-tight text-blue-950 dark:text-blue-400">
-<div class="px-6 mb-4">
+<body class="bg-surface font-body text-on-surface">
+<!-- SideNavBar Shell -->
+<aside class="fixed left-0 top-0 h-full w-64 z-[60] bg-slate-100 dark:bg-slate-900 border-r border-slate-200/20 dark:border-slate-800/20 flex flex-col h-full py-8 gap-y-6">
+<div class="px-8 mb-4">
 <h1 class="font-noto-serif text-xl font-black text-blue-950 dark:text-blue-50">Kodokan Management</h1>
-<p class="text-[10px] uppercase tracking-[0.2em] opacity-60">The Modern Dojo</p>
+<p class="font-work-sans text-sm tracking-tight text-slate-500 dark:text-slate-400">The Modern Dojo</p>
 </div>
-<div class="flex flex-col flex-grow">
-<!-- Dashboard Tab (Inactive) -->
-<a class="flex items-center gap-x-3 px-6 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-200/40 dark:hover:bg-slate-800/40 transition-all duration-200 active:translate-x-1" href="#">
-<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
-<span>Dashboard</span>
+<nav class="flex-1 px-4 space-y-1">
+<a class="flex items-center gap-4 px-4 py-3 rounded text-blue-950 dark:text-blue-50 font-semibold border-r-4 border-red-700 dark:border-red-600 bg-white dark:bg-slate-800 transition-all" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-work-sans text-sm tracking-tight">Dashboard</span>
 </a>
-<!-- Students Tab (Active) -->
-<a class="flex items-center gap-x-3 px-6 py-3 text-blue-950 dark:text-blue-50 font-semibold border-r-4 border-red-700 dark:border-red-600 bg-white dark:bg-slate-800 transition-all duration-200 active:translate-x-1" href="#">
-<span class="material-symbols-outlined" data-icon="groups">groups</span>
-<span>Students</span>
+<a class="flex items-center gap-4 px-4 py-3 rounded text-slate-500 dark:text-slate-400 hover:text-blue-950 dark:hover:text-blue-200 hover:bg-slate-200/40 dark:hover:bg-slate-800/40 transition-all active:translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined">groups</span>
+<span class="font-work-sans text-sm tracking-tight">Students</span>
 </a>
-<!-- Schedule Tab (Inactive) -->
-<a class="flex items-center gap-x-3 px-6 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-200/40 dark:hover:bg-slate-800/40 transition-all duration-200 active:translate-x-1" href="#">
-<span class="material-symbols-outlined" data-icon="calendar_today">calendar_today</span>
-<span>Schedule</span>
+<a class="flex items-center gap-4 px-4 py-3 rounded text-slate-500 dark:text-slate-400 hover:text-blue-950 dark:hover:text-blue-200 hover:bg-slate-200/40 dark:hover:bg-slate-800/40 transition-all active:translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined">calendar_today</span>
+<span class="font-work-sans text-sm tracking-tight">Schedule</span>
 </a>
-<!-- Finance Tab (Inactive) -->
-<a class="flex items-center gap-x-3 px-6 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-200/40 dark:hover:bg-slate-800/40 transition-all duration-200 active:translate-x-1" href="#">
-<span class="material-symbols-outlined" data-icon="payments">payments</span>
-<span>Finance</span>
+<a class="flex items-center gap-4 px-4 py-3 rounded text-slate-500 dark:text-slate-400 hover:text-blue-950 dark:hover:text-blue-200 hover:bg-slate-200/40 dark:hover:bg-slate-800/40 transition-all active:translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined">payments</span>
+<span class="font-work-sans text-sm tracking-tight">Finance</span>
 </a>
-</div>
-<div class="mt-auto border-t border-slate-200/10 pt-4 flex flex-col">
-<a class="flex items-center gap-x-3 px-6 py-3 text-slate-500 hover:text-blue-950 transition-all" href="#">
-<span class="material-symbols-outlined" data-icon="settings">settings</span>
-<span>Settings</span>
-</a>
-<a class="flex items-center gap-x-3 px-6 py-3 text-slate-500 hover:text-blue-950 transition-all" href="#">
-<span class="material-symbols-outlined" data-icon="logout">logout</span>
-<span>Logout</span>
-</a>
-</div>
 </nav>
-<!-- TopAppBar -->
-<header class="fixed top-0 w-full z-50 bg-slate-50/80 dark:bg-slate-950/80 backdrop-blur-md flex justify-between items-center px-12 h-20 ml-64">
-<div class="flex items-center bg-slate-200/50 dark:bg-slate-800/50 px-4 py-2 rounded-lg w-96">
-<span class="material-symbols-outlined text-blue-900/40 mr-2" data-icon="search">search</span>
-<input class="bg-transparent border-none focus:ring-0 text-sm font-work-sans w-full text-blue-900 dark:text-blue-50" placeholder="Search students..." type="text"/>
+<div class="px-4 mt-auto border-t border-slate-200/20 pt-6 space-y-1">
+<a class="flex items-center gap-4 px-4 py-3 rounded text-slate-500 dark:text-slate-400 hover:text-blue-950 dark:hover:text-blue-200 hover:bg-slate-200/40 dark:hover:bg-slate-800/40 transition-all" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-work-sans text-sm tracking-tight">Settings</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded text-slate-500 dark:text-slate-400 hover:text-blue-950 dark:hover:text-blue-200 hover:bg-slate-200/40 dark:hover:bg-slate-800/40 transition-all" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-work-sans text-sm tracking-tight">Logout</span>
+</a>
 </div>
-<div class="flex items-center gap-x-8 pr-64">
-<div class="flex items-center gap-x-4">
-<button class="p-2 rounded-full hover:bg-slate-200/50 dark:hover:bg-slate-800/50 transition-colors scale-95 duration-150">
-<span class="material-symbols-outlined text-blue-900 dark:text-blue-400" data-icon="notifications">notifications</span>
+</aside>
+<!-- TopAppBar Shell -->
+<header class="fixed top-0 w-full z-50 bg-slate-50/80 dark:bg-slate-950/80 backdrop-blur-md flex justify-between items-center px-12 h-20 w-full ml-64 max-w-[calc(100%-16rem)]">
+<div class="flex items-center flex-1 max-w-xl">
+<div class="relative w-full">
+<span class="absolute inset-y-0 left-0 flex items-center pl-3 text-blue-900/60">
+<span class="material-symbols-outlined">search</span>
+</span>
+<input class="w-full bg-slate-100 dark:bg-slate-900 border-none rounded-lg pl-10 pr-4 py-2 focus:ring-2 focus:ring-primary-container text-sm font-work-sans" placeholder="Search student by name or belt rank..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex gap-4 text-blue-900/60 dark:text-blue-400">
+<button class="p-2 hover:bg-slate-200/50 dark:hover:bg-slate-800/50 transition-colors rounded-full">
+<span class="material-symbols-outlined">notifications</span>
 </button>
-<button class="p-2 rounded-full hover:bg-slate-200/50 dark:hover:bg-slate-800/50 transition-colors scale-95 duration-150">
-<span class="material-symbols-outlined text-blue-900 dark:text-blue-400" data-icon="payments">payments</span>
+<button class="p-2 hover:bg-slate-200/50 dark:hover:bg-slate-800/50 transition-colors rounded-full">
+<span class="material-symbols-outlined">payments</span>
 </button>
 </div>
-<button class="bg-secondary text-on-secondary px-6 py-2.5 rounded-lg text-sm font-semibold tracking-wide hover:brightness-110 transition-all">
+<button class="bg-secondary text-on-secondary px-6 py-2 rounded-lg font-work-sans font-semibold text-sm hover:opacity-90 transition-opacity">
                 Add Student
             </button>
-<div class="flex items-center gap-x-3">
-<div class="text-right">
-<p class="text-xs font-bold text-blue-900 dark:text-blue-50 leading-none">Sensei Tanaka</p>
-<p class="text-[10px] text-blue-900/60 dark:text-blue-400">Head Instructor</p>
-</div>
-<img class="w-10 h-10 rounded-full object-cover ring-2 ring-primary/10" data-alt="Sensei Profile portrait" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAcx7_QxS-43shQGHZho4AD6EujJn_egveb68ImFF6wLbkOe79RQGSTcNXLgXB4DMx5E_FWz7dpAWDe7ZjcrX5ZOGIb8C8lrMR-p6hCm0BXwK6k70urwuMWkvT77iv6PZmHEn1BX8c1J7sA7_kESK4cWwpxfzTMJH9Q3gZgfoefF08_YJODYYo5tFB7OpN4Ez-24Wmfa2UDurUEkfRhIUSMORaml4ESqrHvT6rPZEd49NdctpYXEEuWyZOjMsci6Va3JMU7LIse1DQ"/>
-</div>
+<img alt="Sensei Profile" class="w-10 h-10 rounded-full object-cover border-2 border-primary-container" data-alt="Portrait of a disciplined martial arts instructor" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC3xHX9h3ljONUYXpCW8kC31_TFNoVEQb9VjSGhvbAHdYPwqn8UFpmopnPC6Q5L153xVeBdRlZ8_qxhYB5w7cXlnFZBREviATM7h2pTiOm_0TswRAAG-IfABYDfURQykJcczxdnn8UG18f-gc-R7ZXes46xpV481gJ1zQ8IeFmlmzO10eWrHRR8yQK5OOa96tvg-E-ycdYMWLu5OG-opIfFI32jCzZ6dQSiEKB9vuazKIpYOZzHuravJdNDQKoIDJptVJmH0MUG0-Q"/>
 </div>
 </header>
 <!-- Main Content Canvas -->
-<main class="pl-64 pt-20 min-h-screen bg-surface">
-<div class="p-12 max-w-7xl mx-auto">
-<!-- Hero Stats / Header -->
-<div class="flex justify-between items-end mb-12">
+<main class="ml-64 pt-24 p-12 bg-surface min-h-screen">
+<!-- Welcome Message -->
+<header class="mb-10">
+<h2 class="font-noto-serif text-3xl font-black text-primary tracking-tight">Osu, Sensei</h2>
+<p class="text-on-surface-variant font-work-sans mt-1">Here is today's summary for the Dojo's discipline and growth.</p>
+</header>
+<!-- Summary Cards (Bento Style Layout) -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+<!-- Active Students -->
+<div class="bg-surface-container-lowest p-8 rounded-xl belt-shadow flex flex-col justify-between border-l-4 border-primary">
 <div>
-<h2 class="font-noto-serif text-4xl font-black text-primary mb-2">Student Registry</h2>
-<p class="text-on-surface-variant font-work-sans">Manage and monitor the progress of your academy members.</p>
+<span class="material-symbols-outlined text-primary mb-4" style="font-variation-settings: 'FILL' 1;">groups</span>
+<p class="text-on-surface-variant font-work-sans text-xs uppercase tracking-widest font-bold">Active Students</p>
 </div>
-<div class="flex gap-x-12">
-<div class="text-right">
-<span class="block font-noto-serif text-3xl font-bold text-primary">124</span>
-<span class="text-[10px] uppercase tracking-widest font-semibold text-on-surface-variant">Active Students</span>
-</div>
-<div class="text-right">
-<span class="block font-noto-serif text-3xl font-bold text-secondary">8</span>
-<span class="text-[10px] uppercase tracking-widest font-semibold text-on-surface-variant">Black Belts</span>
+<div class="mt-4 flex items-baseline gap-2">
+<span class="font-noto-serif text-5xl font-black text-primary">85</span>
+<span class="text-green-600 text-sm font-bold flex items-center">
+<span class="material-symbols-outlined text-xs">arrow_upward</span> 4%
+                    </span>
 </div>
 </div>
-</div>
-<!-- Table Section -->
-<div class="bg-surface-container-low rounded-xl overflow-hidden">
-<div class="overflow-x-auto">
-<table class="w-full text-left border-collapse">
-<thead>
-<tr class="bg-surface-container-high">
-<th class="px-8 py-5 font-work-sans text-[11px] uppercase tracking-[0.1em] font-bold text-on-surface-variant">Student Name</th>
-<th class="px-8 py-5 font-work-sans text-[11px] uppercase tracking-[0.1em] font-bold text-on-surface-variant">Belt Rank</th>
-<th class="px-8 py-5 font-work-sans text-[11px] uppercase tracking-[0.1em] font-bold text-on-surface-variant">Status</th>
-<th class="px-8 py-5 font-work-sans text-[11px] uppercase tracking-[0.1em] font-bold text-on-surface-variant text-right">Last Attendance</th>
-<th class="px-8 py-5 font-work-sans text-[11px] uppercase tracking-[0.1em] font-bold text-on-surface-variant text-right">Action</th>
-</tr>
-</thead>
-<tbody class="divide-y divide-white/10">
-<!-- Student Row 1 -->
-<tr class="bg-surface-container-lowest hover:bg-white transition-colors">
-<td class="px-8 py-6">
-<div class="flex items-center gap-x-4">
-<div class="w-10 h-10 bg-primary/5 rounded-full flex items-center justify-center font-bold text-primary font-noto-serif">AS</div>
+<!-- Pending Payments -->
+<div class="bg-surface-container-lowest p-8 rounded-xl belt-shadow flex flex-col justify-between border-l-4 border-secondary">
 <div>
-<p class="font-semibold text-primary font-work-sans">Alexander Sterling</p>
-<p class="text-xs text-on-surface-variant">Member since Jan 2023</p>
+<span class="material-symbols-outlined text-secondary mb-4">payments</span>
+<p class="text-on-surface-variant font-work-sans text-xs uppercase tracking-widest font-bold">Pending Payments</p>
+</div>
+<div class="mt-4">
+<span class="font-noto-serif text-5xl font-black text-secondary">12</span>
+<p class="text-xs text-on-surface-variant mt-1 font-work-sans">Action required for 3 overdue</p>
 </div>
 </div>
-</td>
-<td class="px-8 py-6">
-<span class="inline-flex items-center px-3 py-1 rounded-sm text-[10px] font-bold uppercase tracking-wider bg-primary text-on-primary">Black Belt</span>
-</td>
-<td class="px-8 py-6">
-<div class="flex items-center gap-x-2">
-<span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-<span class="text-sm font-medium text-on-surface">Active</span>
-</div>
-</td>
-<td class="px-8 py-6 text-right font-work-sans text-sm text-on-surface-variant">2 hours ago</td>
-<td class="px-8 py-6 text-right">
-<a class="text-sm font-semibold text-secondary hover:underline underline-offset-4 decoration-2" href="#">View Profile</a>
-</td>
-</tr>
-<!-- Student Row 2 -->
-<tr class="bg-surface-container-low hover:bg-white transition-colors">
-<td class="px-8 py-6">
-<div class="flex items-center gap-x-4">
-<div class="w-10 h-10 bg-primary/5 rounded-full flex items-center justify-center font-bold text-primary font-noto-serif">MC</div>
+<!-- Classes Today -->
+<div class="bg-surface-container-lowest p-8 rounded-xl belt-shadow flex flex-col justify-between border-l-4 border-primary-container">
 <div>
-<p class="font-semibold text-primary font-work-sans">Maya Chen</p>
-<p class="text-xs text-on-surface-variant">Member since Mar 2024</p>
+<span class="material-symbols-outlined text-primary-container mb-4">calendar_month</span>
+<p class="text-on-surface-variant font-work-sans text-xs uppercase tracking-widest font-bold">Classes Today</p>
+</div>
+<div class="mt-4">
+<span class="font-noto-serif text-5xl font-black text-primary-container">4</span>
+<p class="text-xs text-on-surface-variant mt-1 font-work-sans">Next session in 45 mins</p>
 </div>
 </div>
-</td>
-<td class="px-8 py-6">
-<span class="inline-flex items-center px-3 py-1 rounded-sm text-[10px] font-bold uppercase tracking-wider bg-blue-100 text-blue-800 ring-1 ring-blue-200">Blue Belt</span>
-</td>
-<td class="px-8 py-6">
-<div class="flex items-center gap-x-2">
-<span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-<span class="text-sm font-medium text-on-surface">Active</span>
-</div>
-</td>
-<td class="px-8 py-6 text-right font-work-sans text-sm text-on-surface-variant">Yesterday</td>
-<td class="px-8 py-6 text-right">
-<a class="text-sm font-semibold text-secondary hover:underline underline-offset-4 decoration-2" href="#">View Profile</a>
-</td>
-</tr>
-<!-- Student Row 3 -->
-<tr class="bg-surface-container-lowest hover:bg-white transition-colors">
-<td class="px-8 py-6">
-<div class="flex items-center gap-x-4">
-<div class="w-10 h-10 bg-primary/5 rounded-full flex items-center justify-center font-bold text-primary font-noto-serif">JW</div>
+</section>
+<!-- Main Insights Row -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<!-- Next Class Section (High-End Card) -->
+<div class="lg:col-span-1 bg-primary text-on-primary p-8 rounded-xl relative overflow-hidden flex flex-col justify-between min-h-[400px]">
+<div class="absolute top-0 right-0 w-32 h-32 bg-secondary opacity-10 translate-x-12 -translate-y-12 rounded-full"></div>
 <div>
-<p class="font-semibold text-primary font-work-sans">Julian Weaver</p>
-<p class="text-xs text-on-surface-variant">Member since Nov 2022</p>
+<span class="inline-block px-3 py-1 bg-secondary text-[10px] font-bold uppercase tracking-tighter mb-6 rounded-sm">Current Session</span>
+<h3 class="font-noto-serif text-3xl font-bold mb-2">Intermediate Randori</h3>
+<p class="font-work-sans text-primary-fixed opacity-80 text-sm">Today, 17:30 — 19:00</p>
 </div>
+<div class="mt-8 space-y-4">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full border-2 border-white/20 overflow-hidden">
+<img alt="Instructor Profile" class="w-full h-full object-cover" data-alt="Close up of a senior Judo instructor" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAgRePKlmpjJNxqFHGxswSeFx4jyz5fWDzQuOr47bsCgPAATpDpSzG4wmMP_QjLKxEbjab4v4puE_3nxgKPNfu8bR6FpKFjVONn6GLizkHuTXG_dXxWo_LZJNCVM1F1Y48Eac-PzIsS2p6XZAdACOzccrNXBgN9et74X9VxYbAG-zGUjWdXnTzIgB8dR2gdXLQdbLAHSMh26c8s7TlBLUhbd6S7c_pBZlSp5qBrNQJsGa7ggL4FTIHbjnuxpqAvmNj2ITrmotvCLGM"/>
 </div>
-</td>
-<td class="px-8 py-6">
-<span class="inline-flex items-center px-3 py-1 rounded-sm text-[10px] font-bold uppercase tracking-wider bg-green-100 text-green-800 ring-1 ring-green-200">Green Belt</span>
-</td>
-<td class="px-8 py-6">
-<div class="flex items-center gap-x-2">
-<span class="w-2 h-2 rounded-full bg-slate-300"></span>
-<span class="text-sm font-medium text-on-surface-variant">Inactive</span>
-</div>
-</td>
-<td class="px-8 py-6 text-right font-work-sans text-sm text-on-surface-variant">2 weeks ago</td>
-<td class="px-8 py-6 text-right">
-<a class="text-sm font-semibold text-secondary hover:underline underline-offset-4 decoration-2" href="#">View Profile</a>
-</td>
-</tr>
-<!-- Student Row 4 -->
-<tr class="bg-surface-container-low hover:bg-white transition-colors">
-<td class="px-8 py-6">
-<div class="flex items-center gap-x-4">
-<div class="w-10 h-10 bg-primary/5 rounded-full flex items-center justify-center font-bold text-primary font-noto-serif">EB</div>
 <div>
-<p class="font-semibold text-primary font-work-sans">Elena Belov</p>
-<p class="text-xs text-on-surface-variant">Member since Jun 2024</p>
+<p class="text-xs uppercase tracking-widest text-primary-fixed opacity-60 font-bold">Lead Instructor</p>
+<p class="font-semibold text-white">Sensei Tanaka</p>
 </div>
 </div>
-</td>
-<td class="px-8 py-6">
-<span class="inline-flex items-center px-3 py-1 rounded-sm text-[10px] font-bold uppercase tracking-wider bg-white text-on-surface ring-1 ring-outline-variant/30">White Belt</span>
-</td>
-<td class="px-8 py-6">
-<div class="flex items-center gap-x-2">
-<span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-<span class="text-sm font-medium text-on-surface">Active</span>
+<div class="pt-6 border-t border-white/10">
+<p class="text-xs uppercase tracking-widest text-primary-fixed opacity-60 font-bold mb-3">Expected Ranks</p>
+<div class="flex flex-wrap gap-2">
+<span class="bg-blue-600 text-white px-2 py-1 text-[10px] font-bold rounded-sm uppercase tracking-tight">Blue Belt</span>
+<span class="bg-green-600 text-white px-2 py-1 text-[10px] font-bold rounded-sm uppercase tracking-tight">Green Belt</span>
+<span class="bg-surface-container-lowest text-primary px-2 py-1 text-[10px] font-bold rounded-sm uppercase tracking-tight">Brown Belt</span>
 </div>
-</td>
-<td class="px-8 py-6 text-right font-work-sans text-sm text-on-surface-variant">Today, 10:00 AM</td>
-<td class="px-8 py-6 text-right">
-<a class="text-sm font-semibold text-secondary hover:underline underline-offset-4 decoration-2" href="#">View Profile</a>
-</td>
-</tr>
-<!-- Student Row 5 -->
-<tr class="bg-surface-container-lowest hover:bg-white transition-colors">
-<td class="px-8 py-6">
-<div class="flex items-center gap-x-4">
-<div class="w-10 h-10 bg-primary/5 rounded-full flex items-center justify-center font-bold text-primary font-noto-serif">DM</div>
+</div>
+</div>
+<button class="mt-8 w-full border border-white/30 py-3 rounded-lg hover:bg-white/10 transition-colors font-work-sans font-bold text-sm">
+                    View Attendance List
+                </button>
+</div>
+<!-- Enrollment Growth Chart Section -->
+<div class="lg:col-span-2 bg-surface-container-lowest p-8 rounded-xl belt-shadow border border-slate-100 flex flex-col">
+<div class="flex justify-between items-center mb-10">
 <div>
-<p class="font-semibold text-primary font-work-sans">David Morales</p>
-<p class="text-xs text-on-surface-variant">Member since Aug 2023</p>
+<h3 class="font-noto-serif text-xl font-black text-primary">Academy Enrollment</h3>
+<p class="text-on-surface-variant text-sm font-work-sans">Growth metrics over the last 6 months</p>
+</div>
+<div class="flex gap-2">
+<button class="text-xs font-bold text-primary-container px-3 py-1 bg-primary-fixed rounded">6 Months</button>
+<button class="text-xs font-bold text-on-surface-variant px-3 py-1 hover:bg-surface-container transition-colors rounded">1 Year</button>
 </div>
 </div>
-</td>
-<td class="px-8 py-6">
-<span class="inline-flex items-center px-3 py-1 rounded-sm text-[10px] font-bold uppercase tracking-wider bg-yellow-100 text-yellow-800 ring-1 ring-yellow-200">Yellow Belt</span>
-</td>
-<td class="px-8 py-6">
-<div class="flex items-center gap-x-2">
-<span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-<span class="text-sm font-medium text-on-surface">Active</span>
-</div>
-</td>
-<td class="px-8 py-6 text-right font-work-sans text-sm text-on-surface-variant">4 days ago</td>
-<td class="px-8 py-6 text-right">
-<a class="text-sm font-semibold text-secondary hover:underline underline-offset-4 decoration-2" href="#">View Profile</a>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-<!-- Pagination Placeholder -->
-<div class="px-8 py-6 bg-surface-container-high border-t border-white/5 flex justify-between items-center">
-<p class="text-xs text-on-surface-variant font-work-sans">Showing 5 of 124 results</p>
-<div class="flex gap-x-2">
-<button class="px-4 py-2 bg-surface-container-lowest rounded-sm text-xs font-bold uppercase tracking-widest text-primary hover:bg-primary hover:text-on-primary transition-all">Prev</button>
-<button class="px-4 py-2 bg-surface-container-lowest rounded-sm text-xs font-bold uppercase tracking-widest text-primary hover:bg-primary hover:text-on-primary transition-all">Next</button>
-</div>
-</div>
-</div>
-<!-- Bento Layout Info Section -->
-<div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
-<div class="md:col-span-2 bg-primary p-8 rounded-xl flex flex-col justify-between text-on-primary relative overflow-hidden group">
-<div class="relative z-10">
-<h3 class="font-noto-serif text-2xl font-bold mb-4">Upcoming Promotions</h3>
-<p class="text-on-primary/70 font-work-sans max-w-md">12 students have completed the required hours for their next rank evaluation scheduled for the next belt ceremony.</p>
-</div>
-<button class="relative z-10 self-start mt-8 bg-on-primary text-primary px-6 py-2 rounded-lg font-bold text-sm tracking-wide hover:bg-white transition-all">Review Candidates</button>
-<div class="absolute right-[-20px] bottom-[-20px] opacity-10 group-hover:scale-110 transition-transform duration-700">
-<span class="material-symbols-outlined text-[180px]" data-icon="military_tech">military_tech</span>
+<!-- Custom Visual: Line Chart Placeholder with SVG for precision -->
+<div class="flex-1 w-full relative h-48 mt-4">
+<svg class="w-full h-full" preserveaspectratio="none" viewbox="0 0 400 100">
+<!-- Background Grid Lines -->
+<line class="text-slate-100" stroke="currentColor" stroke-width="0.5" x1="0" x2="400" y1="20" y2="20"></line>
+<line class="text-slate-100" stroke="currentColor" stroke-width="0.5" x1="0" x2="400" y1="50" y2="50"></line>
+<line class="text-slate-100" stroke="currentColor" stroke-width="0.5" x1="0" x2="400" y1="80" y2="80"></line>
+<!-- Growth Line Path -->
+<path d="M0,80 Q50,75 100,60 T200,55 T300,30 T400,20" fill="none" stroke="#b80a2e" stroke-linecap="round" stroke-width="3"></path>
+<!-- Dots for months -->
+<circle cx="0" cy="80" fill="#00113a" r="3"></circle>
+<circle cx="80" cy="65" fill="#00113a" r="3"></circle>
+<circle cx="160" cy="58" fill="#00113a" r="3"></circle>
+<circle cx="240" cy="45" fill="#00113a" r="3"></circle>
+<circle cx="320" cy="28" fill="#00113a" r="3"></circle>
+<circle cx="400" cy="20" fill="#00113a" r="3"></circle>
+</svg>
+<!-- Month Labels -->
+<div class="flex justify-between mt-4 text-[10px] font-bold text-on-surface-variant font-work-sans uppercase tracking-widest">
+<span>Jan</span>
+<span>Feb</span>
+<span>Mar</span>
+<span>Apr</span>
+<span>May</span>
+<span>Jun</span>
 </div>
 </div>
-<div class="bg-secondary p-8 rounded-xl text-on-secondary">
-<h3 class="font-noto-serif text-2xl font-bold mb-4">Quick Insights</h3>
-<ul class="space-y-4">
-<li class="flex justify-between items-center border-b border-white/20 pb-2">
-<span class="text-sm opacity-80 font-work-sans">New Enrollees (Month)</span>
-<span class="font-bold">+14</span>
-</li>
-<li class="flex justify-between items-center border-b border-white/20 pb-2">
-<span class="text-sm opacity-80 font-work-sans">Average Attendance</span>
-<span class="font-bold">88%</span>
-</li>
-<li class="flex justify-between items-center">
-<span class="text-sm opacity-80 font-work-sans">Belt Graduations</span>
-<span class="font-bold">5</span>
-</li>
-</ul>
+<!-- Recent Achievement Feed -->
+<div class="mt-auto pt-8 grid grid-cols-2 gap-4">
+<div class="bg-surface-container-low p-4 rounded-lg flex items-center gap-3">
+<div class="p-2 bg-green-100 text-green-700 rounded-full">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+</div>
+<div>
+<p class="text-[10px] font-bold uppercase text-on-surface-variant">Retention Rate</p>
+<p class="text-lg font-noto-serif font-black text-primary">94.2%</p>
+</div>
+</div>
+<div class="bg-surface-container-low p-4 rounded-lg flex items-center gap-3">
+<div class="p-2 bg-blue-100 text-blue-700 rounded-full">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">workspace_premium</span>
+</div>
+<div>
+<p class="text-[10px] font-bold uppercase text-on-surface-variant">Graduations</p>
+<p class="text-lg font-noto-serif font-black text-primary">18 <span class="text-xs font-normal">this month</span></p>
 </div>
 </div>
 </div>
+</div>
+</div>
+<!-- Student Attendance Quick View -->
+<section class="mt-12 bg-surface-container-lowest p-8 rounded-xl belt-shadow border border-slate-100">
+<h3 class="font-noto-serif text-xl font-black text-primary mb-6">Recent Attendance</h3>
+<div class="space-y-4">
+<!-- No Horizontal Dividers: Using Spacing and Tonal Alternation -->
+<div class="flex items-center justify-between p-4 bg-surface rounded-lg hover:bg-slate-100 transition-colors">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 bg-slate-200 rounded-full flex items-center justify-center font-bold text-primary">KM</div>
+<div>
+<p class="font-semibold text-primary">Kenzo Maeda</p>
+<p class="text-xs text-on-surface-variant font-work-sans">Blue Belt • Checked in 14:02</p>
+</div>
+</div>
+<span class="bg-blue-100 text-blue-900 px-3 py-1 text-[10px] font-bold rounded-sm uppercase">Punctual</span>
+</div>
+<div class="flex items-center justify-between p-4 bg-surface-container-low rounded-lg hover:bg-slate-100 transition-colors">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 bg-slate-200 rounded-full flex items-center justify-center font-bold text-primary">ES</div>
+<div>
+<p class="font-semibold text-primary">Elena Sokolov</p>
+<p class="text-xs text-on-surface-variant font-work-sans">Green Belt • Checked in 14:15</p>
+</div>
+</div>
+<span class="bg-yellow-100 text-yellow-900 px-3 py-1 text-[10px] font-bold rounded-sm uppercase">Late</span>
+</div>
+<div class="flex items-center justify-between p-4 bg-surface rounded-lg hover:bg-slate-100 transition-colors">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 bg-slate-200 rounded-full flex items-center justify-center font-bold text-primary">AR</div>
+<div>
+<p class="font-semibold text-primary">Aidan Reed</p>
+<p class="text-xs text-on-surface-variant font-work-sans">White Belt • Checked in 13:45</p>
+</div>
+</div>
+<span class="bg-green-100 text-green-900 px-3 py-1 text-[10px] font-bold rounded-sm uppercase">Early Arrival</span>
+</div>
+</div>
+<button class="w-full mt-6 text-primary-container text-xs font-bold uppercase tracking-widest py-2 border-t border-slate-100 hover:text-secondary transition-colors">
+                View All Records
+            </button>
+</section>
 </main>
-<!-- FAB Suppression (Per Instructions - Task Focused Screen) -->
-<!-- FAB is suppressed as this is a focused Management/Details screen -->
+<!-- FAB Suppression: On main dashboard the primary CTA is typically Adding a Student, which is already in TopAppBar. For focus, we omit a general FAB unless specific task is needed -->
 </body></html>
