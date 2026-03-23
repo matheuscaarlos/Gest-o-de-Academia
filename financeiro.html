@@ -62,11 +62,11 @@
               "surface-container-low": "#f3f4f5"
             },
             fontFamily: {
-              "headline": ["Noto Serif"],
-              "body": ["Work Sans"],
-              "label": ["Work Sans"]
+              "headline": ["Noto Serif", "serif"],
+              "body": ["Work Sans", "sans-serif"],
+              "label": ["Work Sans", "sans-serif"]
             },
-            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
           },
         },
       }
@@ -77,42 +77,43 @@
       }
       .font-noto-serif { font-family: 'Noto Serif', serif; }
       .font-work-sans { font-family: 'Work Sans', sans-serif; }
+      body { -webkit-font-smoothing: antialiased; }
     </style>
 </head>
-<body class="bg-surface font-body text-on-surface text-[13px]">
+<body class="bg-surface font-body text-on-surface text-sm">
 <!-- SideNavBar -->
-<nav class="fixed left-0 top-0 h-full w-56 z-[60] bg-slate-100 dark:bg-slate-900 border-r border-slate-200/20 dark:border-slate-800/20 flex flex-col py-8 gap-y-6 font-work-sans text-[13px] tracking-tight">
+<nav class="fixed left-0 top-0 h-full w-56 z-[60] bg-slate-100 dark:bg-slate-900 border-r border-slate-200/20 dark:border-slate-800/20 flex flex-col py-8 gap-y-6 font-work-sans tracking-tight">
 <div class="px-6 mb-4">
-<h1 class="font-noto-serif text-lg font-black text-blue-950 dark:text-blue-50">Kodokan Management</h1>
+<h1 class="font-headline text-lg font-black text-blue-950 dark:text-blue-50">Kodokan Management</h1>
 <p class="text-[10px] text-slate-500 uppercase tracking-widest mt-1">The Modern Dojo</p>
 </div>
 <div class="flex-1 space-y-0.5">
-<a class="flex items-center px-6 py-2.5 text-slate-500 hover:bg-slate-200/40 transition-all active:translate-x-1 duration-200 cursor-pointer" href="index.html">
+<a class="flex items-center px-6 py-2.5 text-slate-500 hover:bg-slate-200/40 hover:text-primary transition-all active:bg-slate-200 duration-200 cursor-pointer" href="index.html">
 <span class="material-symbols-outlined mr-3 text-[20px]" data-icon="dashboard">dashboard</span>
-<span>Dashboard</span>
+<span class="text-sm">Dashboard</span>
 </a>
-<a class="flex items-center px-6 py-2.5 text-slate-500 hover:bg-slate-200/40 transition-all active:translate-x-1 duration-200 cursor-pointer" href="alunos.html">
+<a class="flex items-center px-6 py-2.5 text-slate-500 hover:bg-slate-200/40 hover:text-primary transition-all active:bg-slate-200 duration-200 cursor-pointer" href="alunos.html">
 <span class="material-symbols-outlined mr-3 text-[20px]" data-icon="groups">groups</span>
-<span>Students</span>
+<span class="text-sm">Students</span>
 </a>
-<a class="flex items-center px-6 py-2.5 text-slate-500 hover:bg-slate-200/40 transition-all active:translate-x-1 duration-200 cursor-pointer" href="calendario.html">
+<a class="flex items-center px-6 py-2.5 text-slate-500 hover:bg-slate-200/40 hover:text-primary transition-all active:bg-slate-200 duration-200 cursor-pointer" href="calendario.html">
 <span class="material-symbols-outlined mr-3 text-[20px]" data-icon="calendar_today">calendar_today</span>
-<span>Schedule</span>
+<span class="text-sm">Schedule</span>
 </a>
 <!-- Active Tab: Finance -->
-<a class="flex items-center px-6 py-2.5 text-blue-950 dark:text-blue-50 font-semibold border-r-4 border-red-700 dark:border-red-600 bg-white dark:bg-slate-800 transition-all active:translate-x-1 duration-200 cursor-pointer" href="financeiro.html">
+<a class="flex items-center px-6 py-2.5 text-blue-950 dark:text-blue-50 font-semibold border-r-4 border-red-700 dark:border-red-600 bg-white dark:bg-slate-800 transition-all duration-200 cursor-pointer" href="financeiro.html">
 <span class="material-symbols-outlined mr-3 text-[20px]" data-icon="payments">payments</span>
-<span>Finance</span>
+<span class="text-sm">Finance</span>
 </a>
 </div>
 <div class="mt-auto space-y-0.5">
-<a class="flex items-center px-6 py-2.5 text-slate-500 hover:bg-slate-200/40 transition-all cursor-pointer" href="#">
+<a class="flex items-center px-6 py-2.5 text-slate-500 hover:bg-slate-200/40 hover:text-primary transition-all cursor-pointer" href="#">
 <span class="material-symbols-outlined mr-3 text-[20px]" data-icon="settings">settings</span>
-<span>Settings</span>
+<span class="text-sm">Settings</span>
 </a>
-<a class="flex items-center px-6 py-2.5 text-slate-500 hover:bg-slate-200/40 transition-all cursor-pointer" href="#">
+<a class="flex items-center px-6 py-2.5 text-slate-500 hover:bg-slate-200/40 hover:text-primary transition-all cursor-pointer" href="#">
 <span class="material-symbols-outlined mr-3 text-[20px]" data-icon="logout">logout</span>
-<span>Logout</span>
+<span class="text-sm">Logout</span>
 </a>
 </div>
 </nav>
@@ -121,79 +122,79 @@
 <div class="flex items-center gap-6">
 <div class="relative">
 <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-[18px]" data-icon="search">search</span>
-<input class="bg-slate-100 border-none rounded-lg pl-9 pr-4 py-1.5 w-60 focus:ring-2 focus:ring-primary/20 text-[12px]" placeholder="Search transactions..." type="text"/>
+<input class="bg-slate-100 border-none rounded-lg pl-9 pr-4 py-1.5 w-60 focus:ring-2 focus:ring-primary/20 text-sm" placeholder="Search transactions..." type="text"/>
 </div>
 </div>
 <div class="flex items-center gap-5">
-<button class="p-2 text-slate-600 hover:bg-slate-200/50 rounded-full transition-colors cursor-pointer">
-<span class="material-symbols-outlined text-[20px]" data-icon="notifications">notifications</span>
+<button aria-label="Notifications" class="p-2 text-slate-600 hover:bg-slate-200/50 active:bg-slate-300/50 rounded-full transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-[22px]" data-icon="notifications">notifications</span>
 </button>
-<button class="bg-secondary text-on-secondary px-5 py-2 rounded-lg text-[12px] font-semibold flex items-center gap-2 hover:bg-secondary/90 hover:shadow-sm transition-all cursor-pointer">
-<span class="material-symbols-outlined text-[16px]" data-icon="add">add</span>
-                Register Payment
-            </button>
+<button class="bg-secondary text-on-secondary px-6 py-2.5 rounded-lg text-sm font-semibold flex items-center gap-2 hover:bg-secondary/90 active:scale-[0.98] transition-all cursor-pointer shadow-sm">
+<span class="material-symbols-outlined text-[18px]" data-icon="add">add</span>
+            Register Payment
+        </button>
 <div class="flex items-center gap-3 border-l border-slate-200 pl-5">
 <div class="text-right">
-<p class="text-[12px] font-bold text-primary">Sensei Profile</p>
-<p class="text-[9px] uppercase tracking-tighter text-slate-500">Chief Instructor</p>
+<p class="text-sm font-bold text-primary">Sensei Profile</p>
+<p class="text-[10px] uppercase tracking-tighter text-slate-500">Chief Instructor</p>
 </div>
-<img alt="Sensei Profile" class="w-8 h-8 rounded-lg object-cover" data-alt="Close up portrait of a professional sensei instructor" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCjfGS1uu65T3juyUWB33RYQ2a94g0cNTyAZJYRQcK1eyh6JiKEfb3svy5ALFQYJo5G5Xs5HBy0g67ctwxgo4CwMtrtYP110GvUjmV0Lhgeid8w9YIG7gR_Kel1jg5x3qLHPSi1LXV7HInmCFGesYShxBwOZjlCMk_jyqIE4Fo54Ra7-oQcmA2oWILdR0yo4u5U8agNJ6CYv19vbuz7lTh5V7PTzmUUHJQFqOGzKGMVumukLgEo11lJniWj12-TT9KQk2UVEk5u2DE"/>
+<img alt="Sensei Profile" class="w-9 h-9 rounded-lg object-cover ring-1 ring-slate-200" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCjfGS1uu65T3juyUWB33RYQ2a94g0cNTyAZJYRQcK1eyh6JiKEfb3svy5ALFQYJo5G5Xs5HBy0g67ctwxgo4CwMtrtYP110GvUjmV0Lhgeid8w9YIG7gR_Kel1jg5x3qLHPSi1LXV7HInmCFGesYShxBwOZjlCMk_jyqIE4Fo54Ra7-oQcmA2oWILdR0yo4u5U8agNJ6CYv19vbuz7lTh5V7PTzmUUHJQFqOGzKGMVumukLgEo11lJniWj12-TT9KQk2UVEk5u2DE"/>
 </div>
 </div>
 </header>
 <!-- Main Content Canvas -->
 <main class="ml-56 pt-24 pb-12 px-10 min-h-screen">
 <!-- Header Section -->
-<div class="mb-8">
-<h2 class="font-headline text-2xl font-black text-primary tracking-tight">Financial Control</h2>
-<p class="text-on-surface-variant text-[13px] font-body mt-0.5">Detailed overview of your Dojo's fiscal performance and pending accounts.</p>
+<div class="mb-10">
+<h2 class="font-headline text-3xl font-black text-primary tracking-tight">Financial Control</h2>
+<p class="text-on-surface-variant text-sm font-body mt-1">Detailed overview of your Dojo's fiscal performance and pending accounts.</p>
 </div>
 <!-- Bento Grid Layout -->
 <div class="grid grid-cols-12 gap-6">
 <!-- Revenue This Month Card -->
-<div class="col-span-12 lg:col-span-4 bg-primary text-on-primary p-7 rounded-xl relative overflow-hidden flex flex-col justify-between h-56">
+<div class="col-span-12 lg:col-span-4 bg-primary text-on-primary p-8 rounded-xl relative overflow-hidden flex flex-col justify-between h-64 shadow-md">
 <div class="absolute top-0 right-0 p-6 opacity-10">
-<span class="material-symbols-outlined text-7xl" data-icon="trending_up">trending_up</span>
+<span class="material-symbols-outlined text-8xl" data-icon="trending_up">trending_up</span>
 </div>
 <div>
-<span class="text-[10px] font-label uppercase tracking-widest text-on-primary/60">Revenue this Month</span>
-<h3 class="font-headline text-4xl font-black mt-2">$14,820.00</h3>
+<span class="text-[11px] font-label uppercase tracking-[0.15em] text-on-primary/70">Revenue this Month</span>
+<h3 class="font-headline text-5xl font-black mt-3">$14,820.00</h3>
 </div>
-<div class="flex items-center gap-2 text-[11px]">
-<span class="bg-white/20 px-2 py-0.5 rounded text-[10px]">+12.5%</span>
-<span class="text-on-primary/60">vs. last month</span>
+<div class="flex items-center gap-2.5">
+<span class="bg-white/20 px-2.5 py-1 rounded text-[11px] font-semibold">+12.5%</span>
+<span class="text-on-primary/60 text-xs">vs. last month</span>
 </div>
 </div>
 <!-- Outstanding Balances Card -->
-<div class="col-span-12 lg:col-span-4 bg-surface-container-low p-7 rounded-xl flex flex-col justify-between h-56">
+<div class="col-span-12 lg:col-span-4 bg-surface-container-low p-8 rounded-xl flex flex-col justify-between h-64 border border-outline-variant/10 shadow-sm">
 <div>
-<span class="text-[10px] font-label uppercase tracking-widest text-on-surface-variant">Outstanding Balances</span>
-<h3 class="font-headline text-4xl font-black text-secondary mt-2">$2,450.00</h3>
+<span class="text-[11px] font-label uppercase tracking-[0.15em] text-on-surface-variant/80">Outstanding Balances</span>
+<h3 class="font-headline text-5xl font-black text-secondary mt-3">$2,450.00</h3>
 </div>
-<div class="space-y-2.5">
-<div class="flex justify-between text-[10px] font-medium">
+<div class="space-y-3">
+<div class="flex justify-between text-[11px] font-bold tracking-wider text-on-surface-variant/70">
 <span>COLLECTION PROGRESS</span>
 <span>82%</span>
 </div>
-<div class="w-full bg-slate-200 h-1.5 rounded-full overflow-hidden">
-<div class="bg-secondary h-full" style="width: 82%"></div>
+<div class="w-full bg-slate-200/50 h-2 rounded-full overflow-hidden">
+<div class="bg-secondary h-full rounded-full" style="width: 82%"></div>
 </div>
-<p class="text-[11px] text-on-surface-variant">14 students with pending monthly fees</p>
+<p class="text-xs text-on-surface-variant">14 students with pending monthly fees</p>
 </div>
 </div>
-<!-- Health Snapshot Chart (Simplified Representation) -->
-<div class="col-span-12 lg:col-span-4 bg-surface-container-lowest p-7 rounded-xl border border-outline-variant/15 flex flex-col h-56">
-<span class="text-[10px] font-label uppercase tracking-widest text-on-surface-variant mb-5">Annual Performance</span>
-<div class="flex-1 flex items-end gap-2.5">
-<div class="flex-1 bg-surface-container-highest rounded-t-sm h-[40%]"></div>
-<div class="flex-1 bg-surface-container-highest rounded-t-sm h-[55%]"></div>
-<div class="flex-1 bg-surface-container-highest rounded-t-sm h-[45%]"></div>
-<div class="flex-1 bg-surface-container-highest rounded-t-sm h-[70%]"></div>
-<div class="flex-1 bg-primary rounded-t-sm h-[90%]"></div>
-<div class="flex-1 bg-surface-container-highest rounded-t-sm h-[60%]"></div>
-<div class="flex-1 bg-surface-container-highest rounded-t-sm h-[30%]"></div>
+<!-- Health Snapshot Chart -->
+<div class="col-span-12 lg:col-span-4 bg-surface-container-lowest p-8 rounded-xl border border-outline-variant/20 flex flex-col h-64 shadow-sm">
+<span class="text-[11px] font-label uppercase tracking-[0.15em] text-on-surface-variant/80 mb-6">Annual Performance</span>
+<div class="flex-1 flex items-end gap-3 px-2">
+<div class="flex-1 bg-surface-container-highest rounded-t-md h-[40%] transition-all hover:bg-primary/20 cursor-help" title="Jan: $8.4k"></div>
+<div class="flex-1 bg-surface-container-highest rounded-t-md h-[55%] transition-all hover:bg-primary/20 cursor-help" title="Feb: $10.2k"></div>
+<div class="flex-1 bg-surface-container-highest rounded-t-md h-[45%] transition-all hover:bg-primary/20 cursor-help" title="Mar: $9.1k"></div>
+<div class="flex-1 bg-surface-container-highest rounded-t-md h-[70%] transition-all hover:bg-primary/20 cursor-help" title="Apr: $12.5k"></div>
+<div class="flex-1 bg-primary rounded-t-md h-[90%] transition-all hover:bg-primary/90 cursor-help" title="May: $14.8k"></div>
+<div class="flex-1 bg-surface-container-highest rounded-t-md h-[60%] transition-all hover:bg-primary/20 cursor-help" title="Jun: $11.0k"></div>
+<div class="flex-1 bg-surface-container-highest rounded-t-md h-[30%] transition-all hover:bg-primary/20 cursor-help" title="Jul: $7.2k"></div>
 </div>
-<div class="flex justify-between mt-3 text-[9px] text-on-surface-variant uppercase tracking-tighter">
+<div class="flex justify-between mt-4 text-[10px] text-on-surface-variant font-medium uppercase tracking-widest px-1">
 <span>Jan</span>
 <span>Mar</span>
 <span>May</span>
@@ -203,154 +204,156 @@
 </div>
 </div>
 <!-- Recent Transactions Table -->
-<div class="col-span-12 bg-surface-container-lowest rounded-xl border border-outline-variant/15 overflow-hidden">
-<div class="px-7 py-5 border-b border-outline-variant/15 flex justify-between items-center">
-<h4 class="font-headline text-lg font-bold text-primary">Recent Transactions</h4>
-<div class="flex gap-1.5">
-<button class="text-[10px] font-label uppercase tracking-widest text-primary px-3 py-1.5 hover:bg-surface-container transition-colors rounded cursor-pointer">Export CSV</button>
-<button class="text-[10px] font-label uppercase tracking-widest text-primary px-3 py-1.5 hover:bg-surface-container transition-colors rounded cursor-pointer">Filter</button>
+<div class="col-span-12 bg-white rounded-xl border border-outline-variant/20 overflow-hidden shadow-sm">
+<div class="px-8 py-6 border-b border-outline-variant/15 flex justify-between items-center">
+<h4 class="font-headline text-xl font-bold text-primary">Recent Transactions</h4>
+<div class="flex gap-2">
+<button class="text-[11px] font-bold uppercase tracking-widest text-primary px-4 py-2 hover:bg-surface-container active:bg-surface-container-high transition-colors rounded-lg cursor-pointer border border-outline-variant/30">Export CSV</button>
+<button class="text-[11px] font-bold uppercase tracking-widest text-primary px-4 py-2 hover:bg-surface-container active:bg-surface-container-high transition-colors rounded-lg cursor-pointer border border-outline-variant/30 flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px]" data-icon="filter_list">filter_list</span>
+                        Filter
+                    </button>
 </div>
 </div>
 <div class="overflow-x-auto">
 <table class="w-full text-left border-collapse">
 <thead>
-<tr class="bg-surface-container-low/50">
-<th class="px-7 py-3 text-[9px] font-label uppercase tracking-widest text-on-surface-variant">Description</th>
-<th class="px-7 py-3 text-[9px] font-label uppercase tracking-widest text-on-surface-variant">Student / Customer</th>
-<th class="px-7 py-3 text-[9px] font-label uppercase tracking-widest text-on-surface-variant">Category</th>
-<th class="px-7 py-3 text-[9px] font-label uppercase tracking-widest text-on-surface-variant">Date</th>
-<th class="px-7 py-3 text-[9px] font-label uppercase tracking-widest text-on-surface-variant text-right">Amount</th>
-<th class="px-7 py-3 text-[9px] font-label uppercase tracking-widest text-on-surface-variant">Status</th>
+<tr class="bg-surface-container-low/40">
+<th class="px-8 py-4 text-[11px] font-bold uppercase tracking-[0.1em] text-on-surface-variant/80">Description</th>
+<th class="px-8 py-4 text-[11px] font-bold uppercase tracking-[0.1em] text-on-surface-variant/80">Student / Customer</th>
+<th class="px-8 py-4 text-[11px] font-bold uppercase tracking-[0.1em] text-on-surface-variant/80">Category</th>
+<th class="px-8 py-4 text-[11px] font-bold uppercase tracking-[0.1em] text-on-surface-variant/80">Date</th>
+<th class="px-8 py-4 text-[11px] font-bold uppercase tracking-[0.1em] text-on-surface-variant/80 text-right">Amount</th>
+<th class="px-8 py-4 text-[11px] font-bold uppercase tracking-[0.1em] text-on-surface-variant/80">Status</th>
 </tr>
 </thead>
-<tbody class="divide-y-0">
+<tbody class="divide-y divide-outline-variant/10">
 <!-- Row 1 -->
-<tr class="group hover:bg-surface-container-low/30 transition-colors">
-<td class="px-7 py-4 text-[13px] font-semibold text-primary">Monthly Membership Fee</td>
-<td class="px-7 py-4 text-[13px]">Marcus Watanabe</td>
-<td class="px-7 py-4">
-<span class="text-[9px] font-label uppercase bg-blue-100 text-blue-900 px-2 py-0.5 rounded">Tuition</span>
+<tr class="group hover:bg-surface-container-low/30 transition-colors cursor-pointer">
+<td class="px-8 py-4.5 text-sm font-semibold text-primary">Monthly Membership Fee</td>
+<td class="px-8 py-4.5 text-sm">Marcus Watanabe</td>
+<td class="px-8 py-4.5">
+<span class="text-[10px] font-bold uppercase bg-blue-50 text-blue-700 px-2 py-0.5 rounded border border-blue-100">Tuition</span>
 </td>
-<td class="px-7 py-4 text-[13px] text-on-surface-variant">Oct 24, 2023</td>
-<td class="px-7 py-4 text-[13px] font-bold text-right">$150.00</td>
-<td class="px-7 py-4">
-<div class="flex items-center gap-1.5 text-[11px] font-medium text-emerald-600">
-<span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-                                        Paid
-                                    </div>
+<td class="px-8 py-4.5 text-sm text-on-surface-variant">Oct 24, 2023</td>
+<td class="px-8 py-4.5 text-sm font-bold text-right">$150.00</td>
+<td class="px-8 py-4.5">
+<div class="flex items-center gap-2 text-xs font-semibold text-emerald-600">
+<span class="w-2 h-2 rounded-full bg-emerald-500 shadow-sm"></span>
+                                    Paid
+                                </div>
 </td>
 </tr>
 <!-- Row 2 -->
-<tr class="bg-surface-container-low/10 group hover:bg-surface-container-low/30 transition-colors">
-<td class="px-7 py-4 text-[13px] font-semibold text-primary">Competition Kimono (A2)</td>
-<td class="px-7 py-4 text-[13px]">Sarah Jenkins</td>
-<td class="px-7 py-4">
-<span class="text-[9px] font-label uppercase bg-purple-100 text-purple-900 px-2 py-0.5 rounded">Pro-Shop</span>
+<tr class="group hover:bg-surface-container-low/30 transition-colors cursor-pointer">
+<td class="px-8 py-4.5 text-sm font-semibold text-primary">Competition Kimono (A2)</td>
+<td class="px-8 py-4.5 text-sm">Sarah Jenkins</td>
+<td class="px-8 py-4.5">
+<span class="text-[10px] font-bold uppercase bg-purple-50 text-purple-700 px-2 py-0.5 rounded border border-purple-100">Pro-Shop</span>
 </td>
-<td class="px-7 py-4 text-[13px] text-on-surface-variant">Oct 23, 2023</td>
-<td class="px-7 py-4 text-[13px] font-bold text-right">$185.00</td>
-<td class="px-7 py-4">
-<div class="flex items-center gap-1.5 text-[11px] font-medium text-amber-600">
-<span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
-                                        Pending
-                                    </div>
+<td class="px-8 py-4.5 text-sm text-on-surface-variant">Oct 23, 2023</td>
+<td class="px-8 py-4.5 text-sm font-bold text-right">$185.00</td>
+<td class="px-8 py-4.5">
+<div class="flex items-center gap-2 text-xs font-semibold text-amber-600">
+<span class="w-2 h-2 rounded-full bg-amber-500 shadow-sm"></span>
+                                    Pending
+                                </div>
 </td>
 </tr>
 <!-- Row 3 -->
-<tr class="group hover:bg-surface-container-low/30 transition-colors">
-<td class="px-7 py-4 text-[13px] font-semibold text-primary">Graduation Seminar Fee</td>
-<td class="px-7 py-4 text-[13px]">Kenji Tanaka</td>
-<td class="px-7 py-4">
-<span class="text-[9px] font-label uppercase bg-orange-100 text-orange-900 px-2 py-0.5 rounded">Events</span>
+<tr class="group hover:bg-surface-container-low/30 transition-colors cursor-pointer">
+<td class="px-8 py-4.5 text-sm font-semibold text-primary">Graduation Seminar Fee</td>
+<td class="px-8 py-4.5 text-sm">Kenji Tanaka</td>
+<td class="px-8 py-4.5">
+<span class="text-[10px] font-bold uppercase bg-orange-50 text-orange-700 px-2 py-0.5 rounded border border-orange-100">Events</span>
 </td>
-<td class="px-7 py-4 text-[13px] text-on-surface-variant">Oct 22, 2023</td>
-<td class="px-7 py-4 text-[13px] font-bold text-right">$75.00</td>
-<td class="px-7 py-4">
-<div class="flex items-center gap-1.5 text-[11px] font-medium text-emerald-600">
-<span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-                                        Paid
-                                    </div>
+<td class="px-8 py-4.5 text-sm text-on-surface-variant">Oct 22, 2023</td>
+<td class="px-8 py-4.5 text-sm font-bold text-right">$75.00</td>
+<td class="px-8 py-4.5">
+<div class="flex items-center gap-2 text-xs font-semibold text-emerald-600">
+<span class="w-2 h-2 rounded-full bg-emerald-500 shadow-sm"></span>
+                                    Paid
+                                </div>
 </td>
 </tr>
 <!-- Row 4 -->
-<tr class="bg-surface-container-low/10 group hover:bg-surface-container-low/30 transition-colors">
-<td class="px-7 py-4 text-[13px] font-semibold text-primary">Monthly Membership Fee</td>
-<td class="px-7 py-4 text-[13px]">Elena Rodriguez</td>
-<td class="px-7 py-4">
-<span class="text-[9px] font-label uppercase bg-blue-100 text-blue-900 px-2 py-0.5 rounded">Tuition</span>
+<tr class="group hover:bg-surface-container-low/30 transition-colors cursor-pointer">
+<td class="px-8 py-4.5 text-sm font-semibold text-primary">Monthly Membership Fee</td>
+<td class="px-8 py-4.5 text-sm">Elena Rodriguez</td>
+<td class="px-8 py-4.5">
+<span class="text-[10px] font-bold uppercase bg-blue-50 text-blue-700 px-2 py-0.5 rounded border border-blue-100">Tuition</span>
 </td>
-<td class="px-7 py-4 text-[13px] text-on-surface-variant">Oct 21, 2023</td>
-<td class="px-7 py-4 text-[13px] font-bold text-right">$150.00</td>
-<td class="px-7 py-4">
-<div class="flex items-center gap-1.5 text-[11px] font-medium text-emerald-600">
-<span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-                                        Paid
-                                    </div>
+<td class="px-8 py-4.5 text-sm text-on-surface-variant">Oct 21, 2023</td>
+<td class="px-8 py-4.5 text-sm font-bold text-right">$150.00</td>
+<td class="px-8 py-4.5">
+<div class="flex items-center gap-2 text-xs font-semibold text-emerald-600">
+<span class="w-2 h-2 rounded-full bg-emerald-500 shadow-sm"></span>
+                                    Paid
+                                </div>
 </td>
 </tr>
 <!-- Row 5 -->
-<tr class="group hover:bg-surface-container-low/30 transition-colors">
-<td class="px-7 py-4 text-[13px] font-semibold text-primary">White Belt (Size 4)</td>
-<td class="px-7 py-4 text-[13px]">Hiroshi Sato</td>
-<td class="px-7 py-4">
-<span class="text-[9px] font-label uppercase bg-purple-100 text-purple-900 px-2 py-0.5 rounded">Pro-Shop</span>
+<tr class="group hover:bg-surface-container-low/30 transition-colors cursor-pointer">
+<td class="px-8 py-4.5 text-sm font-semibold text-primary">White Belt (Size 4)</td>
+<td class="px-8 py-4.5 text-sm">Hiroshi Sato</td>
+<td class="px-8 py-4.5">
+<span class="text-[10px] font-bold uppercase bg-purple-50 text-purple-700 px-2 py-0.5 rounded border border-purple-100">Pro-Shop</span>
 </td>
-<td class="px-7 py-4 text-[13px] text-on-surface-variant">Oct 20, 2023</td>
-<td class="px-7 py-4 text-[13px] font-bold text-right">$25.00</td>
-<td class="px-7 py-4">
-<div class="flex items-center gap-1.5 text-[11px] font-medium text-secondary">
-<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
-                                        Overdue
-                                    </div>
+<td class="px-8 py-4.5 text-sm text-on-surface-variant">Oct 20, 2023</td>
+<td class="px-8 py-4.5 text-sm font-bold text-right">$25.00</td>
+<td class="px-8 py-4.5">
+<div class="flex items-center gap-2 text-xs font-semibold text-secondary">
+<span class="w-2 h-2 rounded-full bg-secondary shadow-sm"></span>
+                                    Overdue
+                                </div>
 </td>
 </tr>
 </tbody>
 </table>
 </div>
-<div class="px-7 py-4 bg-surface-container-low/20 border-t border-outline-variant/15 text-center">
-<button class="text-[12px] font-bold text-primary hover:underline cursor-pointer">View All Transactions (248)</button>
+<div class="px-8 py-5 bg-surface-container-low/20 border-t border-outline-variant/15 text-center">
+<button class="text-sm font-bold text-primary hover:text-secondary hover:underline transition-all cursor-pointer">View All Transactions (248)</button>
 </div>
 </div>
 <!-- Financial Insights Bento Piece -->
-<div class="col-span-12 lg:col-span-8 bg-surface-container-low p-7 rounded-xl flex gap-8">
+<div class="col-span-12 lg:col-span-8 bg-surface-container-low p-8 rounded-xl flex gap-10 border border-outline-variant/10 shadow-sm">
 <div class="flex-1">
-<h5 class="font-headline text-base font-bold text-primary mb-3">Cash Flow Note</h5>
-<p class="text-[12px] text-on-surface-variant leading-relaxed">
-                        The Dojo's liquidity is currently optimized for the upcoming tournament season. Pro-shop sales (Kimonos and Belts) have increased by 22% this month, offsetting the higher utility costs for the training hall.
-                    </p>
-<div class="mt-5 flex gap-4">
-<div class="bg-white p-3.5 rounded-lg flex-1 border border-outline-variant/10">
-<span class="text-[9px] font-label uppercase tracking-widest text-on-surface-variant block mb-1">Tuition Retention</span>
-<span class="font-headline text-lg font-black">94%</span>
+<h5 class="font-headline text-lg font-bold text-primary mb-4">Cash Flow Analysis</h5>
+<p class="text-sm text-on-surface-variant leading-relaxed">
+                    The Dojo's liquidity is currently optimized for the upcoming tournament season. Pro-shop sales (Kimonos and Belts) have increased by 22% this month, successfully offsetting the higher utility costs for the training hall maintenance. Tuition retention remains high at 94%.
+                </p>
+<div class="mt-8 flex gap-5">
+<div class="bg-white p-5 rounded-lg flex-1 border border-outline-variant/20 shadow-sm">
+<span class="text-[11px] font-bold uppercase tracking-widest text-on-surface-variant/70 block mb-2">Tuition Retention</span>
+<span class="font-headline text-2xl font-black text-primary">94.2%</span>
 </div>
-<div class="bg-white p-3.5 rounded-lg flex-1 border border-outline-variant/10">
-<span class="text-[9px] font-label uppercase tracking-widest text-on-surface-variant block mb-1">Avg Transaction</span>
-<span class="font-headline text-lg font-black">$162</span>
+<div class="bg-white p-5 rounded-lg flex-1 border border-outline-variant/20 shadow-sm">
+<span class="text-[11px] font-bold uppercase tracking-widest text-on-surface-variant/70 block mb-2">Avg Transaction</span>
+<span class="font-headline text-2xl font-black text-primary">$162.45</span>
 </div>
 </div>
 </div>
-<div class="w-40 hidden md:block">
-<img alt="Traditional Dojo" class="w-full h-full object-cover rounded-lg grayscale opacity-60" data-alt="Black and white photograph of a traditional judo training hall" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBSFgiijVrrxQ_s6E-s96orU-_rZssJZoGTsoC2Ed9CsBj36x0FXMczId3AkDrx3lrAxeufWPfeNrAjH4mHLU1tSZDWWXUvPIA4NRm70cBCz3y-l3nzkTy2PO9U897HcecYT-y210uR-6kXa91_-3u6plOYAo_-rliT7nOGFQU8vtkha1ZC0PCRTojn3DNgw4Km97XVnuD6yTDf4wWUYjgY2VVuAxNnw26ZtZmx2F_45p5hJcOQHZTWTA0qm46xl6Hx17J5TXMBUFo"/>
+<div class="w-48 hidden md:block">
+<img alt="Traditional Dojo" class="w-full h-full object-cover rounded-lg grayscale opacity-40 mix-blend-multiply ring-1 ring-outline-variant/20" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBSFgiijVrrxQ_s6E-s96orU-_rZssJZoGTsoC2Ed9CsBj36x0FXMczId3AkDrx3lrAxeufWPfeNrAjH4mHLU1tSZDWWXUvPIA4NRm70cBCz3y-l3nzkTy2PO9U897HcecYT-y210uR-6kXa91_-3u6plOYAo_-rliT7nOGFQU8vtkha1ZC0PCRTojn3DNgw4Km97XVnuD6yTDf4wWUYjgY2VVuAxNnw26ZtZmx2F_45p5hJcOQHZTWTA0qm46xl6Hx17J5TXMBUFo"/>
 </div>
 </div>
 <!-- Quick Action Cards -->
 <div class="col-span-12 lg:col-span-4 space-y-4">
-<button class="w-full bg-primary-container text-white p-5 rounded-xl flex items-center justify-between group hover:bg-primary transition-colors cursor-pointer">
+<button class="w-full bg-primary text-white p-6 rounded-xl flex items-center justify-between group hover:bg-primary/90 active:scale-[0.985] transition-all cursor-pointer shadow-md">
 <div class="text-left">
-<span class="block font-bold text-[13px]">Generate Reports</span>
-<span class="text-[10px] opacity-70">Monthly tax &amp; balance sheets</span>
+<span class="block font-bold text-sm tracking-tight">Generate Financial Reports</span>
+<span class="text-xs opacity-70 mt-0.5 block">Monthly tax &amp; balance sheets</span>
 </div>
-<span class="material-symbols-outlined group-hover:translate-x-1 transition-transform text-[20px]" data-icon="description">description</span>
+<span class="material-symbols-outlined group-hover:translate-x-1 transition-transform text-[24px]" data-icon="description">description</span>
 </button>
-<button class="w-full bg-surface-container-highest p-5 rounded-xl flex items-center justify-between group hover:bg-outline-variant transition-colors cursor-pointer">
+<button class="w-full bg-white p-6 rounded-xl flex items-center justify-between group hover:bg-surface-container active:scale-[0.985] transition-all cursor-pointer border border-outline-variant/30 shadow-sm">
 <div class="text-left">
-<span class="block font-bold text-primary text-[13px]">Bulk Billing</span>
-<span class="text-[10px] text-on-surface-variant">Send invoices to all students</span>
+<span class="block font-bold text-primary text-sm tracking-tight">Bulk Student Billing</span>
+<span class="text-xs text-on-surface-variant mt-0.5 block">Send automated invoices to all students</span>
 </div>
-<span class="material-symbols-outlined text-primary group-hover:translate-x-1 transition-transform text-[20px]" data-icon="mail">mail</span>
+<span class="material-symbols-outlined text-primary group-hover:translate-x-1 transition-transform text-[24px]" data-icon="mail">mail</span>
 </button>
 </div>
 </div>
 </main>
-<!-- FAB Suppression: Contextually suppressed as per mandate for Financial screens -->
 </body></html>
